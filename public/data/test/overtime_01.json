@@ -1,0 +1,47 @@
+{
+    "nodes": [
+      {
+        "name": "Peter",
+        "label": "Person",
+        "id": 1
+      },
+      {
+        "name": "Michael",
+        "label": "Person",
+        "id": 20
+      },
+      {
+        "name": "Neo4j",
+        "label": "Database",
+        "id": 3
+      },
+      {
+        "name": "Graph Database",
+        "label": "Database",
+        "id": 4
+      }
+    ],
+    "links": [
+      {
+        "source": 1,
+        "target": 3,
+        "refactoring_name": "MOVE",
+        "since": 2010
+      },
+      {
+        "source": 3,
+        "target": 1,
+        "refactoring_name": "MOVE 2"
+      },
+      {
+        "source": 20,
+        "target": 3,
+        "refactoring_name": "PULL UP"
+      },
+      {
+        "source": 3,
+        "target": 4,
+        "refactoring_name": "EXTRACT"
+      }
+    ]
+  }
