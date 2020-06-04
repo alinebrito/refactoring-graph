@@ -4,10 +4,10 @@ import {event as d3Event} from 'd3-selection';
 import {drag as d3Drag} from 'd3-drag';
 import {select as d3Select} from 'd3-selection'
 
-
 class RefGraphComponent extends Component {
 
   constructor(props) {
+
     super();
 
     this.ref = React.createRef();
@@ -15,11 +15,20 @@ class RefGraphComponent extends Component {
     this.ticked = this.ticked.bind(this)
     this.positionLink = this.positionLink.bind(this)
     this.update = this.update.bind(this)
+    this.readData = this.readData.bind(this)
 
     this.arrow_color = '#555555'
     this.edge_distance = 180;
     this.edge_label_size = 15;
     this.radius = 14
+    this.width = 500
+    this.height = 500
+
+    this.state = {
+      owner: props.match.params.owner,
+      project: props.match.params.project,
+      id: props.match.params.id
+    };
 
   }
 
@@ -29,7 +38,6 @@ class RefGraphComponent extends Component {
   }
 
   update(links, nodes, simulation) {
-
     var svg = d3Select(this.ref.current)
     var colors = d3.scaleOrdinal().range(["#000000"]);
 
@@ -128,6 +136,8 @@ class RefGraphComponent extends Component {
 
   ticked() {
     const svg = d3Select(this.ref.current)
+    .attr('width', 500)
+    .attr('height', 500);
 
     svg
     .selectAll(".link")
@@ -157,10 +167,23 @@ class RefGraphComponent extends Component {
     });
   }
 
+  readData(url, simulation){
+    d3.queue()
+    .defer(d3.json, url)
+    .await((error, data) => {
+      if(error){
+        const demo = `/data/test/test/overtime_01.json`;
+        this.readData(demo, simulation)
+      }
+      else{
+        this.update(data.links, data.nodes, simulation)
+      }
+    })
+  }
+
   draw(){
 
     const svg = d3Select(this.ref.current)
-
     svg
     .append('defs')
     .append('marker')
@@ -184,19 +207,15 @@ class RefGraphComponent extends Component {
     .strength(1))
     .force("charge", d3.forceManyBody())
     .force("collide", d3.forceCollide().radius(12))
-    .force("center", d3.forceCenter(this.props.width/2, this.props.height/2));
-    
-    d3.queue()
-    .defer(d3.json, "../data/" + this.props.graphid + ".json")
-    .await((error, data) => {
-        this.update(data.links, data.nodes, simulation)
-    })
-    
+    .force("center", d3.forceCenter(this.width/2, this.height/2));
+
+    const url = `/data/${this.state.owner}/${this.state.project}/overtime_${this.state.id}.json`;
+    this.readData(url, simulation)
   }
 
   render(){
     return(
-      <svg width={this.props.width} height={this.props.height} ref={this.ref}>
+      <svg ref={this.ref}>
       </svg>
     )
   }
