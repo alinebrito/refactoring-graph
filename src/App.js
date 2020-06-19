@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import './style.css';
 import RefGraphComponent from "./components/RefGraphComponent.js";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from './Nav';
 
 function App() { 
@@ -13,8 +12,12 @@ function App() {
     <header className="header">
       <Navbar />
       <div id="graphbody" className="App">
-        <Route path="/:owner/:project/:id" component={RefGraphComponent}>
-        </Route>
+        <Switch>
+          <Route path="/:owner/:project/:id" component={RefGraphComponent}/>
+          <Route path="/:owner" component={RefGraphComponent} />
+          <Route path="/:owner/:project" component={RefGraphComponent} />
+          <Route path="/" component={RefGraphComponent} />
+        </Switch>
       </div>
     </header>
   </BrowserRouter>
