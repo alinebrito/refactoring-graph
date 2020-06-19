@@ -3,3 +3,10 @@
     stroke-opacity: .8; 
     stroke-width: 3px; 
 }
+
+
+.svg-graph {
+    /* background: lightgray; */
+    width: 100%;
+    height: 100%;
+}

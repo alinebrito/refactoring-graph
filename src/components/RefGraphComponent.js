@@ -21,8 +21,8 @@ class RefGraphComponent extends Component {
     this.edge_distance = 180;
     this.edge_label_size = 15;
     this.radius = 14
-    this.width = 500
-    this.height = 500
+    this.width = window.innerWidth;
+    this.height = window.innerHeight - 100;
 
     this.state = {
       owner: props.match.params.owner,
@@ -136,8 +136,8 @@ class RefGraphComponent extends Component {
 
   ticked() {
     const svg = d3Select(this.ref.current)
-    .attr('width', 500)
-    .attr('height', 500);
+    .attr('width', this.width)
+    .attr('height', this.height);
 
     svg
     .selectAll(".link")
@@ -215,7 +215,7 @@ class RefGraphComponent extends Component {
 
   render(){
     return(
-      <svg ref={this.ref}>
+      <svg className="svg-graph" ref={this.ref}>
       </svg>
     )
   }
