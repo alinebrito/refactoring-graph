@@ -1,23 +1,23 @@
 {
     "nodes": [
       {
-        "name": "Peter",
-        "label": "Person",
+        "name": "uti.js#f1",
+        "simpleName": "f1",
         "id": 1
       },
       {
-        "name": "Michael",
-        "label": "Person",
+        "name": "uti.js#f2",
+        "simpleName": "f2",
         "id": 20
       },
       {
-        "name": "Neo4j",
-        "label": "Database",
+        "name": "uti.js#f3",
+        "simpleName": "f3",
         "id": 3
       },
       {
-        "name": "Graph Database",
-        "label": "Database",
+        "name": "uti.js#f4",
+        "simpleName": "f4",
         "id": 4
       }
     ],
@@ -26,22 +26,33 @@
         "source": 1,
         "target": 3,
         "refactoring_name": "MOVE",
-        "since": 2010
+        "sha1": "768432b",
+        "project": "aserg-ufmg/apidiff",
+        "level": "function"
       },
       {
         "source": 3,
         "target": 1,
-        "refactoring_name": "MOVE 2"
+        "refactoring_name": "MOVE",
+        "sha1": "768432b",
+        "project": "aserg-ufmg/apidiff",
+        "level": "function"
       },
       {
         "source": 20,
         "target": 3,
-        "refactoring_name": "PULL UP"
+        "sha1": "768432b",
+        "project": "aserg-ufmg/apidiff",
+        "refactoring_name": "PULL UP",
+        "level": "function"
       },
       {
         "source": 3,
         "target": 4,
-        "refactoring_name": "EXTRACT"
+        "sha1": "768432b",
+        "project": "aserg-ufmg/apidiff",
+        "refactoring_name": "EXTRACT",
+        "level": "function"
       }
     ]
   }
