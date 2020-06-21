@@ -5,7 +5,7 @@ export default () => {
   return (
     <header className="navbar navbar-dark bg-dark" >
       <a className="navbar-brand" href="/#">
-        <img src={logo} width="45" height="45" alt=""/>
+        {/* <img src={logo} width="45" height="45" alt=""/> */}
         Refactoring Graph
       </a>
       <div className="justify-content-end">

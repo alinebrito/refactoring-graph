@@ -12,8 +12,7 @@
 }
 
 .left{
-    z-index: 99999;
-    width: 170px;
+    width: 240px;
     height: 100%;
     white-space: nowrap;
     transition: width 0.5s ;

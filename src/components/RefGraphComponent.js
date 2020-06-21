@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import {event as d3Event} from 'd3-selection';
 import {drag as d3Drag} from 'd3-drag';
 import {select as d3Select} from 'd3-selection'
+import logo from '../logo.svg';
 
 class RefGraphComponent extends Component {
 
@@ -240,30 +241,35 @@ class RefGraphComponent extends Component {
             <div className="left bg-light">
                 <ul>
                   <li className="item-menu">
-                      ID: #{this.state.id}
-                  </li>
-                  <li className="item-menu">
+                    <i className="fab fa-github fa-fw" title="GitHub Project" aria-hidden="true"></i>&nbsp;
                       Project: <a href={`https://github.com/${this.state.owner}/${this.state.project}`}target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a> 
                   </li>
                   <li className="item-menu">
+                      <i className="fas fa-coins fa-fw" title="Subgraph group" aria-hidden="true"></i>&nbsp;
                       Group: {this.state.group}
                   </li>
                   <li className="item-menu">
+                      <i className="fa fa-users fa-fw" title="Number of distinct developers" aria-hidden="true"></i>&nbsp;
                       Developers: {this.state.developers}
                   </li>
                   <li className="item-menu">
+                      <i className="fa fa-code-branch fa-fw" title="Number of distinct commits" aria-hidden="true"></i>&nbsp;
                       Commits: {this.state.commits}
                   </li>
                   <li className="item-menu">
+                      <i className="fa fa-ellipsis-h fa-fw" title="Number of vertices" aria-hidden="true"></i>&nbsp;
                       Vertices: {this.state.vertices}
                   </li>
                   <li className="item-menu">
+                      <i className="fa fa-exchange-alt fa-fw" title="Number of edges" aria-hidden="true"></i>&nbsp;
                       Edges: {this.state.edges}
                   </li>
                   <li className="item-menu">
-                      Age (months): {this.state.agemonth}
+                      <i className="fa fa-clock fa-fw" title="Age (months)" aria-hidden="true"></i>&nbsp;
+                      Age: {this.state.agemonth}
                   </li>
                   <li className="item-menu">
+                    <i className="fa fa-registered fa-fw" title="Number of distinct refatorings" aria-hidden="true"></i>&nbsp;
                       Refactorings: {this.state.refactorings}
                   </li>
                 </ul>
