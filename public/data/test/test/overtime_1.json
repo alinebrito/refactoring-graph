@@ -1,4 +1,16 @@
 {
+    "info": {
+      "project": "test/test",
+      "developers": 1,
+      "edges": 1,
+      "vertices": 1,
+      "commits": 1,
+      "id": 1,
+      "agemonth": 1,
+      "refactorings": 1,
+      "group": "overtime"
+    },
+
     "nodes": [
       {
         "name": "uti.js#f1",

@@ -7,20 +7,26 @@ import Navbar from './Nav';
 
 function App() { 
   return (
-
-  <BrowserRouter>
-    <header className="header">
+    <div>
       <Navbar />
-      <div id="graphbody" className="App">
-        <Switch>
-          <Route path="/:owner/:project/:id" component={RefGraphComponent}/>
-          <Route path="/:owner" component={RefGraphComponent} />
-          <Route path="/:owner/:project" component={RefGraphComponent} />
-          <Route path="/" component={RefGraphComponent} />
-        </Switch>
+      <div className="">
+        <div className="right">
+          <BrowserRouter>
+            <div>
+              <div id="graphbody">
+                <Switch>
+                  <Route path="/:owner/:project/:id" component={RefGraphComponent}/>
+                  <Route path="/:owner" component={RefGraphComponent} />
+                  <Route path="/:owner/:project" component={RefGraphComponent} />
+                  <Route path="/" component={RefGraphComponent} />
+                </Switch>
+              </div>
+            </div>
+          </BrowserRouter>
+        </div>
       </div>
-    </header>
-  </BrowserRouter>
+    </div>
+
   );
 }
 

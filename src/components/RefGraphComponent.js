@@ -3,7 +3,6 @@ import * as d3 from "d3";
 import {event as d3Event} from 'd3-selection';
 import {drag as d3Drag} from 'd3-drag';
 import {select as d3Select} from 'd3-selection'
-import RefGraphInfo from "./RefGraphInfo.js";
 
 class RefGraphComponent extends Component {
 
@@ -177,10 +176,25 @@ class RefGraphComponent extends Component {
     .defer(d3.json, url)
     .await((error, data) => {
       if(error){
-        const demo = `/data/test/test/overtime_01.json`;
+        const demo = `/data/test/test/overtime_1.json`;
         this.readData(demo, simulation)
+        this.setState({
+          project: "test",
+          owner: "test",
+          id: 1
+        })
       }
       else{
+        this.setState({
+          developers: data.info.developers,
+          edges: data.info.edges,
+          vertices: data.info.vertices,
+          commits: data.info.commits,
+          agemonth: data.info.agemonth,
+          refactorings: data.info.refactorings,
+          group: data.info.group
+        });
+
         this.update(data.links, data.nodes, simulation)
       }
     })
@@ -221,9 +235,43 @@ class RefGraphComponent extends Component {
   render(){
     return(
       <div>
-        <svg className="svg-graph" ref={this.ref}>
-        </svg>
-        {/* <RefGraphInfo/>  */}
+        <div>
+          <div className="row">
+            <div className="left bg-light">
+                <ul>
+                  <li className="item-menu">
+                      ID: #{this.state.id}
+                  </li>
+                  <li className="item-menu">
+                      Project: <a href={`https://github.com/${this.state.owner}/${this.state.project}`}target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a> 
+                  </li>
+                  <li className="item-menu">
+                      Group: {this.state.group}
+                  </li>
+                  <li className="item-menu">
+                      Developers: {this.state.developers}
+                  </li>
+                  <li className="item-menu">
+                      Commits: {this.state.commits}
+                  </li>
+                  <li className="item-menu">
+                      Vertices: {this.state.vertices}
+                  </li>
+                  <li className="item-menu">
+                      Edges: {this.state.edges}
+                  </li>
+                  <li className="item-menu">
+                      Age (months): {this.state.agemonth}
+                  </li>
+                  <li className="item-menu">
+                      Refactorings: {this.state.refactorings}
+                  </li>
+                </ul>
+            </div>
+          </div>
+          <svg className="svg-graph" ref={this.ref}>
+          </svg>
+        </div>
       </div>
     )
   }
