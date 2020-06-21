@@ -193,7 +193,9 @@ class RefGraphComponent extends Component {
           commits: data.info.commits,
           agemonth: data.info.agemonth,
           refactorings: data.info.refactorings,
-          group: data.info.group
+          group: data.info.group,
+          language: data.info.language,
+          level: data.info.level
         });
 
         this.update(data.links, data.nodes, simulation)
@@ -240,9 +242,16 @@ class RefGraphComponent extends Component {
           <div className="row">
             <div className="left bg-light">
                 <ul>
+                  <li className="item-menu text-center">
+                      <b>Refactoring subgraph #{this.state.id}</b>
+                  </li>
                   <li className="item-menu">
-                    <i className="fab fa-github fa-fw" title="GitHub Project" aria-hidden="true"></i>&nbsp;
+                    <i className="fab fa-github fa-fw mx-auto" title="GitHub Project" aria-hidden="true"></i>&nbsp;
                       Project: <a href={`https://github.com/${this.state.owner}/${this.state.project}`}target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a> 
+                  </li>
+                  <li className="item-menu">
+                    <i className="far fa-file-code fa-fw" title="Languange" aria-hidden="true"></i>&nbsp;
+                      Language: {this.state.language}
                   </li>
                   <li className="item-menu">
                       <i className="fas fa-coins fa-fw" title="Subgraph group" aria-hidden="true"></i>&nbsp;
@@ -265,11 +274,12 @@ class RefGraphComponent extends Component {
                       Edges: {this.state.edges}
                   </li>
                   <li className="item-menu">
-                      <i className="fa fa-clock fa-fw" title="Age (months)" aria-hidden="true"></i>&nbsp;
+                      <i className="far fa-clock fa-fw" title="Number of months between the
+most recent and the oldest commit" aria-hidden="true"></i>&nbsp;
                       Age: {this.state.agemonth}
                   </li>
                   <li className="item-menu">
-                    <i className="fa fa-registered fa-fw" title="Number of distinct refatorings" aria-hidden="true"></i>&nbsp;
+                    <i className="far fa-registered fa-fw" title="Number of distinct refatorings" aria-hidden="true"></i>&nbsp;
                       Refactorings: {this.state.refactorings}
                   </li>
                 </ul>
