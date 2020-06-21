@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import {event as d3Event} from 'd3-selection';
 import {drag as d3Drag} from 'd3-drag';
 import {select as d3Select} from 'd3-selection'
+import RefGraphInfo from "./RefGraphInfo.js";
 
 class RefGraphComponent extends Component {
 
@@ -50,9 +51,13 @@ class RefGraphComponent extends Component {
     .attr('fill-opacity', 0)
     .attr('id', function (d, i) {return 'edgepath' + i})
     .attr('marker-end','url(#arrowhead)')
-
-    link.append("title")
-    .text(function (d) {return d.refactoring_name;});
+    .on("mouseover", function(d) {
+      link
+      .style("cursor", "pointer");
+    })
+    .on("click",function(d,i) {
+      window.open(`https://github.com/${d.project}/commit/${d.sha1}`, '_blank');
+    });
 
     // edge path
     svg.selectAll(".edgepath")
@@ -109,7 +114,7 @@ class RefGraphComponent extends Component {
     .style("fill", function (d, i) {return colors(i);})
 
     node.append("title")
-    .text(function (d) {return d.id;});
+    .text(function (d) {return d.name;});
 
     simulation
     .nodes(nodes)
@@ -215,8 +220,11 @@ class RefGraphComponent extends Component {
 
   render(){
     return(
-      <svg className="svg-graph" ref={this.ref}>
-      </svg>
+      <div>
+        <svg className="svg-graph" ref={this.ref}>
+        </svg>
+        {/* <RefGraphInfo/>  */}
+      </div>
     )
   }
 }
