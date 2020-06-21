@@ -1,5 +1,6 @@
 # Refactoring Graph
 
+Example of refactoring subgraphs: https://refactoring-graph.github.io
 
 ## Publications
 
