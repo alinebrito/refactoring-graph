@@ -4,24 +4,17 @@
     stroke-width: 3px; 
 }
 
-
 .svg-graph {
-    /* background: lightgray; */
     width: 100%;
     height: 100%;
 }
 
 .left{
-    width: 240px;
-    height: 100%;
+    width: 210px;
+    height: 58%;
     white-space: nowrap;
-    transition: width 0.5s ;
     position: fixed;
 }
-
-/* .left:hover {
-    width: 250px;
-} */
 
 .left .item-menu {
     height:50px;
@@ -29,7 +22,7 @@
 }
 
 .left li {
-    padding-left: 10px;
+    padding-left: 0px;
 }
 
 .left ul{

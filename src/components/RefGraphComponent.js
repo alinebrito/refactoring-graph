@@ -23,7 +23,7 @@ class RefGraphComponent extends Component {
     this.edge_label_size = 15;
     this.radius = 14
     this.width = window.innerWidth;
-    this.height = window.innerHeight - 100;
+    this.height = window.innerHeight - 250;
 
     this.state = {
       owner: props.match.params.owner,
@@ -240,22 +240,19 @@ class RefGraphComponent extends Component {
       <div>
         <div>
           <div className="row">
-            <div className="left bg-light">
+               
+              <div className="d-none d-sm-block d-sm-none d-md-block left border border-secondary rounded-right fixed-bottom ">
                 <ul>
                   <li className="item-menu text-center">
-                      <b>Refactoring subgraph #{this.state.id}</b>
+                      <b>Subgraph #{this.state.id}</b>
                   </li>
                   <li className="item-menu">
                     <i className="fab fa-github fa-fw mx-auto" title="GitHub Project" aria-hidden="true"></i>&nbsp;
-                      Project: <a href={`https://github.com/${this.state.owner}/${this.state.project}`}target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a> 
+                      <a href={`https://github.com/${this.state.owner}/${this.state.project}`}target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a> 
                   </li>
                   <li className="item-menu">
-                    <i className="far fa-file-code fa-fw" title="Languange" aria-hidden="true"></i>&nbsp;
-                      Language: {this.state.language}
-                  </li>
-                  <li className="item-menu">
-                      <i className="fas fa-coins fa-fw" title="Subgraph group" aria-hidden="true"></i>&nbsp;
-                      Group: {this.state.group}
+                    <i className="far fa-file-code fa-fw" title="Language" aria-hidden="true"></i>&nbsp;
+                      {this.state.language}
                   </li>
                   <li className="item-menu">
                       <i className="fa fa-users fa-fw" title="Number of distinct developers" aria-hidden="true"></i>&nbsp;
@@ -274,14 +271,13 @@ class RefGraphComponent extends Component {
                       Edges: {this.state.edges}
                   </li>
                   <li className="item-menu">
-                      <i className="far fa-clock fa-fw" title="Number of months between the
-most recent and the oldest commit" aria-hidden="true"></i>&nbsp;
+                      <i className="far fa-clock fa-fw" title="Number of months between the most recent and the oldest commit" aria-hidden="true"></i>&nbsp;
                       Age: {this.state.agemonth}
                   </li>
                   <li className="item-menu">
                     <i className="far fa-registered fa-fw" title="Number of distinct refatorings" aria-hidden="true"></i>&nbsp;
                       Refactorings: {this.state.refactorings}
-                  </li>
+                  </li> 
                 </ul>
             </div>
           </div>
