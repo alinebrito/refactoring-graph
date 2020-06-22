@@ -11,13 +11,13 @@
 
 .left{
     width: 210px;
-    height: 58%;
+    height: 50%;
     white-space: nowrap;
     position: fixed;
 }
 
 .left .item-menu {
-    height:50px;
+    height:35px;
     overflow:hidden;
 }
 
