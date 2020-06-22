@@ -16,7 +16,9 @@ function App() {
               <div id="graphbody">
                 <Switch>
                   <Route path="/:owner/:project/:id" component={RefGraphComponent}/>
-                  <Redirect from="/" exact to="/test/test/1"/>
+                  <Route exact path="/">
+                    <Redirect from="/" exact to="/test/test/1"/>
+                  </Route>
                 </Switch>
               </div>
             </div>
