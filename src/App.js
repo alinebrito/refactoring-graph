@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import './style.css';
 import RefGraphComponent from "./components/RefGraphComponent.js";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect, HashRouter } from "react-router-dom";
 import Navbar from './Nav';
 
 function App() { 
@@ -15,10 +15,12 @@ function App() {
             <div>
               <div id="graphbody">
                 <Switch>
-                  <Route path="/:owner/:project/:id" component={RefGraphComponent}/>
-                  <Route exact path="/">
-                    <Redirect from="/" exact to="/test/test/1"/>
-                  </Route>
+                  <HashRouter basename={process.env.PUBLIC_URL}>
+                    <Route exact path="/:owner/:project/:id" component={RefGraphComponent} />
+                    <Route exact path="/">
+                      <Redirect from="/" exact to="/test/test/1"/>
+                    </Route>
+                  </HashRouter>
                 </Switch>
               </div>
             </div>
