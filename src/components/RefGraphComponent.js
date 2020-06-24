@@ -36,8 +36,35 @@ class RefGraphComponent extends Component {
     this.draw()
   }
 
-  update(links, nodes, simulation) {
+  update(links, nodes) {
+
+    //Edge simulation
+    var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function (d) {return d.id;})
+    .distance(this.edge_distance)
+    .strength(1))
+    .force("charge", d3.forceManyBody())
+    .force("collide", d3.forceCollide().radius(12))
+    .force("center", d3.forceCenter(this.width/2, this.height/2));
+
     var svg = d3Select(this.ref.current)
+
+    // Arrow
+    svg
+    .append('defs')
+    .append('marker')
+    .attr('id','arrowhead')
+    .attr('viewBox','-0 -5 10 10')
+    .attr('refX', this.radius + 3.5)
+    .attr('refY', 0,)
+    .attr('orient','auto')
+    .attr('markerWidth', 5)
+    .attr('markerHeight', 5)
+    .attr('xoverflow','visible')
+    .append('svg:path')
+    .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
+    .attr('class', 'arrowhead')
+
 
     // edge
     var link = svg.selectAll(".link")
@@ -49,6 +76,13 @@ class RefGraphComponent extends Component {
     .attr('marker-end','url(#arrowhead)')
     .on("mouseover", function(d) {
       d3Select(`#edgepath${d.index}`).attr("class", "link link-over")
+      d3Select(`#circle${d.source.id}`).attr("class", "circle-on")
+      d3Select(`#circle${d.target.id}`).attr("class", "circle-on")
+    })
+    .on('mouseout', function(d){
+      d3Select(`#edgepath${d.index}`).attr("class", "link link-out")
+      d3Select(`#circle${d.source.id}`).attr("class", "circle")
+      d3Select(`#circle${d.target.id}`).attr("class", "circle")
     })
     .on("click",function(d,i) {
       window.open(`https://github.com/${d.project}/commit/${d.sha1}`, '_blank');
@@ -95,6 +129,7 @@ class RefGraphComponent extends Component {
     node.append("circle")
     .attr("r", this.radius)
     .attr("class", "circle")
+    .attr('id', function (d, i) {return 'circle' + d.id})
     node.append("title")
     .text(function (d) {return d.name;});
 
@@ -152,13 +187,13 @@ class RefGraphComponent extends Component {
     });
   }
 
-  readData(url, simulation){
+  readData(url){
     d3.queue()
     .defer(d3.json, url)
     .await((error, data) => {
       if(error){
         const demo = `/data/test/test/overtime_1.json`;
-        this.readData(demo, simulation)
+        this.readData(demo)
         this.setState({
           project: "test",
           owner: "test",
@@ -178,42 +213,15 @@ class RefGraphComponent extends Component {
           level: data.info.level
         });
 
-        this.update(data.links, data.nodes, simulation)
+        this.update(data.links, data.nodes)
       }
     })
   }
 
   draw(){
-
     const svg = d3Select(this.ref.current)
-
-    //Arrow
-    svg
-    .append('defs')
-    .append('marker')
-    .attr('id','arrowhead')
-    .attr('viewBox','-0 -5 10 10')
-    .attr('refX', this.radius + 3.5)
-    .attr('refY', 0,)
-    .attr('orient','auto')
-    .attr('markerWidth', 5)
-    .attr('markerHeight', 5)
-    .attr('xoverflow','visible')
-    .append('svg:path')
-    .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
-    .attr('class', 'arrowhead');
-
-    //Edge simulation
-    var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function (d) {return d.id;})
-    .distance(this.edge_distance)
-    .strength(1))
-    .force("charge", d3.forceManyBody())
-    .force("collide", d3.forceCollide().radius(12))
-    .force("center", d3.forceCenter(this.width/2, this.height/2));
-
     const url = `/data/${this.state.owner}/${this.state.project}/overtime_${this.state.id}.json`;
-    this.readData(url, simulation)
+    this.readData(url)
   }
 
   render(){

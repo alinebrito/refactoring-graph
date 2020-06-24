@@ -6,7 +6,14 @@
 }
 
 .link-over {
+    background-color: yellow;
+    stroke: #096FA6;
+    stroke-width: 3px;
     cursor: pointer;
+}
+
+.link-out {
+    stroke: #555555;
 }
 
 .edgepath {
@@ -21,12 +28,16 @@
 }
 
 .node {
-    stroke-width: 1px;
+    stroke-width: 2px;
     stroke: #555555;
 }
 
 .circle {
     fill: #000000;
+}
+
+.circle-on {
+    fill: #096FA6;
 }
 
 .edgelabel {
@@ -37,6 +48,10 @@
 .arrowhead {
     fill: #555555;
     stroke: none;
+}
+
+.arrowhead-on {
+    fill: #2A5CD6;
 }
 
 .svg-graph {
