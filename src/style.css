@@ -2,6 +2,41 @@
     stroke: #555555; 
     stroke-opacity: .8; 
     stroke-width: 3px; 
+    fill-opacity: 0;
+}
+
+.link-over {
+    cursor: pointer;
+}
+
+.edgepath {
+    fill-opacity: 0;
+    stroke-opacity: 0;
+    pointer-events: none;
+}
+
+.textPath {
+    text-anchor: middle;
+    pointer-events: none;
+}
+
+.node {
+    stroke-width: 1px;
+    stroke: #555555;
+}
+
+.circle {
+    fill: #000000;
+}
+
+.edgelabel {
+    pointer-events: none;
+    font-family: Times;
+}
+
+.arrowhead {
+    fill: #555555;
+    stroke: none;
 }
 
 .svg-graph {

@@ -18,12 +18,10 @@ class RefGraphComponent extends Component {
     this.update = this.update.bind(this)
     this.readData = this.readData.bind(this)
 
-    this.arrow_color = '#555555'
     this.edge_distance = 180;
-    this.edge_label_size = 15;
     this.radius = 14
     this.width = window.innerWidth;
-    this.height = window.innerHeight - 250;
+    this.height = window.innerHeight - 255;
 
     this.state = {
       owner: props.match.params.owner,
@@ -40,7 +38,6 @@ class RefGraphComponent extends Component {
 
   update(links, nodes, simulation) {
     var svg = d3Select(this.ref.current)
-    var colors = d3.scaleOrdinal().range(["#000000"]);
 
     // edge
     var link = svg.selectAll(".link")
@@ -48,55 +45,42 @@ class RefGraphComponent extends Component {
     .enter()
     .append('path')
     .attr('class', 'link')
-    .attr('fill-opacity', 0)
     .attr('id', function (d, i) {return 'edgepath' + i})
     .attr('marker-end','url(#arrowhead)')
     .on("mouseover", function(d) {
-      link
-      .style("cursor", "pointer");
+      d3Select(`#edgepath${d.index}`).attr("class", "link link-over")
     })
     .on("click",function(d,i) {
       window.open(`https://github.com/${d.project}/commit/${d.sha1}`, '_blank');
     });
 
-    // edge path
+    //Edge
     svg.selectAll(".edgepath")
     .data(links)
     .enter()
     .append('path')
     .attr('class', 'edgepath')
-    .attr('fill-opacity', 0)
-    .attr('stroke-opacity', 0)
     .attr('id', function (d, i) {return 'edgepath' + i})
-    .style("pointer-events", "none");
 
-    // edge label
+    //Refactoring name
     var edgelabels = svg.selectAll(".edgelabel")
     .data(links)
     .enter()
     .append('text')
-    .style("pointer-events", "none")
-    .attr('font-family', "Times")
     .attr('class', 'edgelabel')
     .attr('id', function (d, i) {return 'edgelabel' + i})
-    .attr('font-size', this.edge_label_size)
-    .attr('fill', '#000')
-
     edgelabels.append('textPath')
     .attr('xlink:href', function (d, i) {return '#edgepath' + i})
-    .style("text-anchor", "middle")
-    .style("pointer-events", "none")
+    .attr("class", "textPath")
     .attr("startOffset", "50%")
     .text(function (d) {return d.refactoring_name});
 
-    // node 
+    //Vertices 
     var node = svg.selectAll(".node")
     .data(nodes)
     .enter()
     .append("g")
     .attr("class", "node")
-    .attr("stroke", this.arrow_color)
-    .attr("stroke-width", '1px')
     .call(d3Drag()
       .on("start", function(d){
         if (!d3Event.active) simulation.alphaTarget(0.3).restart()
@@ -108,23 +92,21 @@ class RefGraphComponent extends Component {
         d.fy = d3Event.y;
       })
     );
-    
     node.append("circle")
     .attr("r", this.radius)
-    .style("fill", function (d, i) {return colors(i);})
-
+    .attr("class", "circle")
     node.append("title")
     .text(function (d) {return d.name;});
 
+    //Graph simulation
     simulation
     .nodes(nodes)
     .on("tick",this.ticked);
-
     simulation.force("link")
     .links(links);
   }
 
-  //edge curve
+  //Edge curve
   positionLink(d) {
     var offset = 50;
     var midpoint_x = (d.source.x + d.target.x) / 2;
@@ -134,9 +116,7 @@ class RefGraphComponent extends Component {
     var normalise = Math.sqrt((dx * dx) + (dy * dy));
     var offSetX = midpoint_x + offset*(dy/normalise);
     var offSetY = midpoint_y - offset*(dx/normalise);
-    return "M" + d.source.x + "," + d.source.y +
-        "S" + offSetX + "," + offSetY +
-        " " + d.target.x + "," + d.target.y;
+    return "M" + d.source.x + "," + d.source.y + "S" + offSetX + "," + offSetY + " " + d.target.x + "," + d.target.y;
   }
 
   ticked() {
@@ -206,6 +186,8 @@ class RefGraphComponent extends Component {
   draw(){
 
     const svg = d3Select(this.ref.current)
+
+    //Arrow
     svg
     .append('defs')
     .append('marker')
@@ -219,10 +201,9 @@ class RefGraphComponent extends Component {
     .attr('xoverflow','visible')
     .append('svg:path')
     .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
-    .attr('fill', this.arrow_color)
-    .style('stroke','none');
+    .attr('class', 'arrowhead');
 
-    //edge
+    //Edge simulation
     var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function (d) {return d.id;})
     .distance(this.edge_distance)
