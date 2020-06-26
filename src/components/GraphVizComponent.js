@@ -20,7 +20,7 @@ class GraphVizCompoment extends Component {
       project: props.match.params.project,
       id: props.match.params.id,
       width: this.ref.offsetWidth,
-      height: window.innerHeight - 250,
+      height: window.innerHeight - 262,
       graph: 'digraph refgraph {}'  
     };
 
@@ -88,13 +88,13 @@ class GraphVizCompoment extends Component {
       <div>
         <div className="">
           <div className="row justify-content-md-center container">
-            <div className="col col-lg-3 d-none d-sm-block d-sm-none d-md-block border border-secondary rounded-right">
+            <div className="col col-lg-3 d-none d-sm-block d-sm-none d-md-block">
               <ul className="list-group list-group-flush">
-                <li className="list-group-item text-center container border-0">
-                  <b>Subgraph #{this.state.id}</b>
+                <li className="list-group-item border-0 li-custom">
+                  <i className="fas fa-code-branch" title="Language" aria-hidden="true"></i>&nbsp; Subgraph #{this.state.id}
                 </li>
                 <li className="list-group-item border-0 li-custom">
-                <i className="fab fa-github fa-fw mx-auto" title="GitHub Project" aria-hidden="true"></i>&nbsp; <a href={`https://github.com/${this.state.owner}/${this.state.project}`}target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a>                   </li>
+                  <i className="fab fa-github fa-fw mx-auto" title="GitHub Project" aria-hidden="true"></i>&nbsp; <a href={`https://github.com/${this.state.owner}/${this.state.project}`}target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a>                   </li>
                 <li className="list-group-item border-0 li-custom">
                   <i className="far fa-file-code fa-fw" title="Language" aria-hidden="true"></i>&nbsp; {this.state.language}
                 </li>
