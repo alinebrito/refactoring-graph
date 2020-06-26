@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import './style.css';
-import RefGraphComponent from "./components/RefGraphComponent.js";
+import GraphVizComponent from "./components/GraphVizComponent.js";
 import { BrowserRouter, Route, Switch, Redirect, HashRouter } from "react-router-dom";
 import Navbar from './Nav';
 
@@ -16,7 +16,7 @@ function App() {
               <div id="graphbody">
                 <Switch>
                   <HashRouter basename={process.env.PUBLIC_URL}>
-                    <Route exact path="/:owner/:project/:id" component={RefGraphComponent} />
+                    <Route exact path="/:owner/:project/:id" component={GraphVizComponent} />
                     <Route exact path="/">
                       <Redirect from="/" exact to="/test/test/1"/>
                     </Route>
