@@ -20,7 +20,7 @@ class GraphVizCompoment extends Component {
       project: props.match.params.project,
       id: props.match.params.id,
       width: this.ref.offsetWidth,
-      height:  window.innerHeight - 270,
+      height: window.innerHeight - 250,
       graph: 'digraph refgraph {}'  
     };
 
@@ -66,7 +66,7 @@ class GraphVizCompoment extends Component {
     var digraph = `digraph refgraph { ratio = auto; node [shape=point, width=0.3]; rankdir=LR; `
     const listItems = edges.map((edge) =>
         edge.map((refactoring) =>
-          digraph += `"${refactoring.node_before_entity}" -> "${refactoring.node_after_entity}" [id=${refactoring.edge_number}, label="${refactoring.refactoring_name}", fontsize=14; arrowsize=1;];`
+          digraph += `"${refactoring.node_before_entity}" -> "${refactoring.node_after_entity}" [id=${refactoring.edge_number}, label="${refactoring.refactoring_name}", fontsize=11; arrowsize=1; fontname="Arial, sans-serif"];`
         )
     );
     digraph += `}`
@@ -86,53 +86,46 @@ class GraphVizCompoment extends Component {
   render(){
     return(
       <div>
-        <div className="container">
-          <div className="row justify-content-md-center">
-            <div className="col col-lg-2">
-            <div className="d-none d-sm-block d-sm-none d-md-block left border border-secondary rounded-right fixed-bottom ">
-                  <ul>
-                    <li className="item-menu text-center">
-                        <b>Subgraph #{this.state.id}</b>
-                    </li>
-                    <li className="item-menu">
-                      <i className="fab fa-github fa-fw mx-auto" title="GitHub Project" aria-hidden="true"></i>&nbsp;
-                        <a href={`https://github.com/${this.state.owner}/${this.state.project}`}target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a> 
-                    </li>
-                    <li className="item-menu">
-                      <i className="far fa-file-code fa-fw" title="Language" aria-hidden="true"></i>&nbsp;
-                        {this.state.language}
-                    </li>
-                    <li className="item-menu">
-                        <i className="fa fa-users fa-fw" title="Number of distinct developers" aria-hidden="true"></i>&nbsp;
-                        Developers: {this.state.developers}
-                    </li>
-                    <li className="item-menu">
-                        <i className="fa fa-code-branch fa-fw" title="Number of distinct commits" aria-hidden="true"></i>&nbsp;
-                        Commits: {this.state.commits}
-                    </li>
-                    <li className="item-menu">
-                        <i className="fa fa-ellipsis-h fa-fw" title="Number of vertices" aria-hidden="true"></i>&nbsp;
-                        Vertices: {this.state.vertices}
-                    </li>
-                    <li className="item-menu">
-                        <i className="fa fa-exchange-alt fa-fw" title="Number of edges" aria-hidden="true"></i>&nbsp;
-                        Edges: {this.state.edges}
-                    </li>
-                    <li className="item-menu">
-                        <i className="far fa-clock fa-fw" title="Number of months between the most recent and the oldest commit" aria-hidden="true"></i>&nbsp;
-                        Age: {this.state.agemonth}
-                    </li>
-                    <li className="item-menu">
-                      <i className="far fa-registered fa-fw" title="Number of distinct refatorings" aria-hidden="true"></i>&nbsp;
-                        Refactorings: {this.state.refactorings}
-                    </li> 
-                  </ul>
-              </div>
+        <div className="">
+          <div className="row justify-content-md-center container">
+            <div className="col col-lg-3 d-none d-sm-block d-sm-none d-md-block border border-secondary rounded-right">
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item text-center container border-0">
+                  <b>Subgraph #{this.state.id}</b>
+                </li>
+                <li className="list-group-item border-0 li-custom">
+                <i className="fab fa-github fa-fw mx-auto" title="GitHub Project" aria-hidden="true"></i>&nbsp; <a href={`https://github.com/${this.state.owner}/${this.state.project}`}target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a>                   </li>
+                <li className="list-group-item border-0 li-custom">
+                  <i className="far fa-file-code fa-fw" title="Language" aria-hidden="true"></i>&nbsp; {this.state.language}
+                </li>
+                <li className="list-group-item border-0 li-custom">
+                    <i className="fa fa-users fa-fw" title="Number of distinct developers" aria-hidden="true"></i>&nbsp;
+                    Developers: {this.state.developers}
+                </li>
+                <li className="list-group-item border-0 li-custom">
+                    <i className="fa fa-code-branch fa-fw" title="Number of distinct commits" aria-hidden="true"></i>&nbsp;
+                    Commits: {this.state.commits}
+                </li>
+                <li className="list-group-item border-0 li-custom">
+                    <i className="fa fa-ellipsis-h fa-fw" title="Number of vertices" aria-hidden="true"></i>&nbsp;
+                    Vertices: {this.state.vertices}
+                </li>
+                <li className="list-group-item border-0 li-custom">
+                    <i className="fa fa-exchange-alt fa-fw" title="Number of edges" aria-hidden="true"></i>&nbsp;
+                    Edges: {this.state.edges}
+                </li>
+                <li className="list-group-item border-0 li-custom">
+                    <i className="far fa-clock fa-fw" title="Number of months between the most recent and the oldest commit" aria-hidden="true"></i>&nbsp;
+                    Age: {this.state.agemonth}
+                </li>
+                <li className="list-group-item border-0 li-custom">
+                  <i className="far fa-registered fa-fw" title="Number of distinct refatorings" aria-hidden="true"></i>&nbsp;
+                    Refactorings: {this.state.refactorings}
+                </li> 
+              </ul>
             </div>
-            <div className="col-lg-10" ref={this.ref}>
-              <div className="text-center">
+            <div className="col-lg-9 text-right" ref={this.ref}>
                 <Graphviz dot={this.state.graph} options={{ width: this.state.width, height: this.state.height, zoom: false}} />
-              </div>
             </div>
           </div>
         </div>

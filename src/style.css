@@ -12,27 +12,7 @@
     fill: #909090;
 }
 
-/* .edge text{
-    font-size: 10px;
-} */
 
-.left{
-    width: 220px;
-    height: 70%;
-    white-space: nowrap;
-    position: fixed;
-}
-
-.left .item-menu {
-    height:35px;
-    overflow:hidden;
-}
-
-.left li {
-    padding-left: 0px;
-}
-
-.left ul{
-    padding: 20px;
-    list-style-type: none;
+.li-custom {
+    padding: 4px;
 }
