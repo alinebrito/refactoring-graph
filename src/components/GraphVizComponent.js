@@ -13,7 +13,7 @@ class GraphVizCompoment extends Component {
     this.draw = this.draw.bind(this);
     this.renderGraph =  this.renderGraph.bind(this);
     this.readData = this.readData.bind(this)
-    this.crateDigraph = this.crateDigraph.bind(this)
+    this.createDigraph = this.createDigraph.bind(this)
 
     this.state = {
       owner: props.match.params.owner,
@@ -21,7 +21,8 @@ class GraphVizCompoment extends Component {
       id: props.match.params.id,
       width: this.ref.offsetWidth,
       height: window.innerHeight - 262,
-      graph: 'digraph refgraph {}'  
+      graph: 'digraph refgraph {}',
+      distinct_commits: []
     };
 
   }
@@ -56,12 +57,14 @@ class GraphVizCompoment extends Component {
           group: data.info.group,
           language: data.info.language,
           level: data.info.level,
-          graph: this.crateDigraph(data.edges)
+          distinct_commits: data.distinct_commits,
+          graph: this.createDigraph(data.edges)
         });
       }
     })
   }
-  crateDigraph(edges){
+
+  createDigraph(edges){
     // size="25.7,8.3!"
     var digraph = `digraph {ratio="auto"; node [shape=point, width=0.25]; rankdir=LR; `;
     var msgLabel = 'Click to see the commit on GitHub';
@@ -89,7 +92,7 @@ class GraphVizCompoment extends Component {
 
   render(){
     return(
-        <div className="row container justify-content-center justify-content-between align-items-center">
+        <div className="row">
           <div className="col col-lg-2">
             <ul className="list-group list-group-flush border border-secondary rounded">
               <li className="list-group-item border-0 li-custom li-title text-center">
@@ -110,10 +113,6 @@ class GraphVizCompoment extends Component {
                   Developers: {this.state.developers}
               </li>
               <li className="list-group-item border-0 li-custom">
-                  <i className="fa fa-code-branch fa-fw" title="Number of distinct commits" aria-hidden="true"></i>&nbsp;
-                  Commits: {this.state.commits}
-              </li>
-              <li className="list-group-item border-0 li-custom">
                   <i className="fa fa-ellipsis-h fa-fw" title="Number of vertices" aria-hidden="true"></i>&nbsp;
                   Vertices: {this.state.vertices}
               </li>
@@ -131,29 +130,18 @@ class GraphVizCompoment extends Component {
               </li> 
             </ul>
             <ul className="list-group list-group-flush ul-bottom border border-secondary rounded">
-                <li className="list-group-item li-custom">
-                  Rename, commit xxxxxxx<br/>
-                  From:<br/>
-                  To: <br/>
-                </li>
-                <li className="list-group-item li-custom">
-                  Rename, commit xxxxxxx<br/>
-                  From:<br/>
-                  To: <br/>
-                </li>
-                <li className="list-group-item li-custom">
-                  Rename, commit xxxxxxx<br/>
-                  From:<br/>
-                  To: <br/>
-                </li>
-                <li className="list-group-item li-custom">
-                  Rename, commit xxxxxxx<br/>
-                  From:<br/>
-                  To: <br/>
-                </li>
+            <li className="list-group-item border-0 li-custom">
+              <i className="fa fa-code-branch fa-fw" title="Number of distinct commits" aria-hidden="true"></i>&nbsp;
+                  Commits: {this.state.commits}
+              </li>
+              {this.state.distinct_commits.map((sha1, index) => {
+                return <a key={index} href={`https://github.com/${this.state.owner}/${this.state.project}/commit/${sha1}`}target="_blank" rel="noopener noreferrer"><li className="list-group-item li-custom">
+                  {sha1}
+                </li></a>
+              })}
             </ul>
           </div>
-          <div id="" className="col col-lg-10" ref={this.ref}>
+          <div id="" className="col col-lg-10 text-center" ref={this.ref}>
              <div className="graphviz-custom text-center">
                <Graphviz dot={this.state.graph} options={{ width: this.state.width, height: this.state.height, zoom: false}} />
              </div>

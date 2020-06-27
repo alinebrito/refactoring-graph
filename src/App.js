@@ -11,7 +11,7 @@ function App() {
       <Navbar />
           <BrowserRouter>
             <div>
-              <div id="graph-div">
+              <div className="container-fluid" id="graph-div">
                 <Switch>
                   <HashRouter basename={process.env.PUBLIC_URL}>
                     <Route exact path="/:owner/:project/:id" component={GraphVizComponent} />
