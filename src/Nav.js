@@ -18,7 +18,7 @@ export default () => {
             </a>
         </div>
       </div>
-      <div className="container ">
+      <div className="container">
           <div className="card-body border-0">
             <p className="text-center">Refactoring Graph is a data structure to assess refactoring over time. The vertices are methods/functions and the edges represent refactoring operations. See <a href='https://github.com/alinebrito/refactoring-graph'target="_blank" rel="noopener noreferrer">refactoring-graph </a> repository for more details.
             </p>
