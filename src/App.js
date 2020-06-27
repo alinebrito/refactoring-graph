@@ -9,11 +9,9 @@ function App() {
   return (
     <div>
       <Navbar />
-      <div className="">
-        <div className="right">
           <BrowserRouter>
             <div>
-              <div id="graphbody">
+              <div id="graph-div">
                 <Switch>
                   <HashRouter basename={process.env.PUBLIC_URL}>
                     <Route exact path="/:owner/:project/:id" component={GraphVizComponent} />
@@ -25,8 +23,6 @@ function App() {
               </div>
             </div>
           </BrowserRouter>
-        </div>
-      </div>
     </div>
 
   );

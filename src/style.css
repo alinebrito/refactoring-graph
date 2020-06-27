@@ -12,7 +12,40 @@
     fill: #909090;
 }
 
-
 .li-custom {
-    padding: 4px;
+    padding: 2px;
+    margin-left: 5px;
+}
+
+.li-title{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.ul-bottom{
+    margin-top: 20px;
+    height: 150px;
+    overflow: auto;
+}
+
+#graph-div ::-webkit-scrollbar {
+  width: 10px;
+}
+
+#graph-div ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+#graph-div ::-webkit-scrollbar-thumb {
+  background: #909090; 
+  border-radius: 10px;
+}
+
+.graphviz-custom {
+    overflow: auto!important;
+}
+
+li {
+    font-size: 13px;
 }
