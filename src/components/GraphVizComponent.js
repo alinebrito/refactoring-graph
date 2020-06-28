@@ -56,7 +56,7 @@ class GraphVizCompoment extends Component {
           group: data.info.group,
           language: data.info.language,
           level: data.info.level,
-          commits_list: data.commits,
+          commits_list: data.commits_list,
           graph: this.createDigraph(data.edges),
           error: false
         });

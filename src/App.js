@@ -16,7 +16,7 @@ function App() {
                   <HashRouter basename={process.env.PUBLIC_URL}>
                     <Route exact path="/:owner/:project/:id" component={GraphVizComponent} />
                     <Route exact path="/">
-                      <Redirect from="/" exact to="/test/test/1"/>
+                      <Redirect from="/" exact to="/square/okhttp/84"/>
                     </Route>
                   </HashRouter>
                 </Switch>
