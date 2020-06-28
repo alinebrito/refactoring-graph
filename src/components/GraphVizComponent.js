@@ -22,9 +22,9 @@ class GraphVizCompoment extends Component {
       project: props.match.params.project,
       id: props.match.params.id,
       width: this.ref.offsetWidth,
-      height: window.innerHeight - 262,
+      height: this.ref.offsetHeight, //window.innerHeight - 262,
       graph: 'digraph refgraph {}',
-      distinct_commits: [],
+      commits_list: [],
       error: false
     };
 
@@ -56,7 +56,7 @@ class GraphVizCompoment extends Component {
           group: data.info.group,
           language: data.info.language,
           level: data.info.level,
-          distinct_commits: data.distinct_commits,
+          commits_list: data.commits,
           graph: this.createDigraph(data.edges),
           error: false
         });
@@ -67,14 +67,12 @@ class GraphVizCompoment extends Component {
   createDigraph(edges){
     var digraph = `digraph {ratio="auto"; node [shape=point, width=0.25]; rankdir=LR; `;
     var msgLabel = 'Click to see the commit on GitHub';
-    var edgeFont = `fontsize=11, arrowsize=1 fontname="Arial, sans-serif"`
-    edges.map((edge) =>
-        digraph += edge.map((refactoring) =>
-           ` "${refactoring.node_before_entity}" -> "${refactoring.node_after_entity}" 
-          [id=${refactoring.edge_number}, label="${refactoring.refactoring_name}", ${edgeFont}, edgehref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", edgetarget="_blank", labeltarget="_blank" edgetooltip="${msgLabel}", labelhref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", labeltooltip="${msgLabel}"
-          ]
-          `
-        )
+    var edgeFont = `fontsize=10, arrowsize=1 fontname="Arial, sans-serif"`
+    edges.map((refactoring) =>
+      digraph += ` "${refactoring.entity_before_full_name}" -> "${refactoring.entity_after_full_name}" 
+        [id=${refactoring.edge_number}, label="${refactoring.refactoring_name}", ${edgeFont}, edgehref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", edgetarget="_blank", labeltarget="_blank" edgetooltip="${msgLabel}", labelhref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", labeltooltip="${msgLabel}"
+        ]
+        `
     );
     digraph += `}`
     return digraph
@@ -89,10 +87,10 @@ class GraphVizCompoment extends Component {
   renderGraph() {
     if(!this.state.error){
       return (
-        <div id="" className="col col-lg-10 text-center" ref={this.ref}>
-          <div className="graphviz-custom text-center">
-            <Graphviz dot={this.state.graph} options={{ width: this.state.width, height: this.state.height, zoom: false}} />
-          </div>
+          <div className="col col-lg-10 text-center" ref={this.ref}>
+            <div className="graphviz-custom">
+              <Graphviz dot={this.state.graph} options={{ width: this.state.width, height: this.state.height, zoom: false}} />
+            </div>
         </div>
       )
     }
@@ -143,7 +141,7 @@ class GraphVizCompoment extends Component {
             <i className="fa fa-code-branch fa-fw" title="Number of distinct commits" aria-hidden="true"></i>&nbsp;
                 Commits: {this.state.commits}
             </li>
-            {this.state.distinct_commits.map((sha1, index) => {
+            {this.state.commits_list.map((sha1, index) => {
               return <a key={index} href={`https://github.com/${this.state.owner}/${this.state.project}/commit/${sha1}`}target="_blank" rel="noopener noreferrer"><li className="list-group-item li-custom">
                 {sha1}
               </li></a>
@@ -157,7 +155,7 @@ class GraphVizCompoment extends Component {
   renderError(){
     if(this.state.error){
       return (
-        <div className="col col-lg-12 text-center h5 lead align-middle">
+        <div className="col col-lg-12 text-center h5 lead">
           <p>Refactoring subgraph not found. Back to <a href={process.env.PUBLIC_URL} rel="noopener noreferrer"> homepage</a>.</p>
         </div>
       )
