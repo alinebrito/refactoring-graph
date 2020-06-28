@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Graphviz} from 'graphviz-react';
 import * as d3 from 'd3';
-import {select as d3_select} from 'd3-selection'
+import subgraphsOvertime from '../data/subgraphs_overtime.json';
 
 class GraphVizCompoment extends Component {
 
@@ -10,12 +10,15 @@ class GraphVizCompoment extends Component {
     super();
 
     this.ref = React.createRef();
+
     this.draw = this.draw.bind(this);
     this.renderGraph =  this.renderGraph.bind(this);
     this.renderMenu = this.renderMenu.bind(this)
     this.renderError = this.renderError.bind(this)
     this.readData = this.readData.bind(this)
     this.createDigraph = this.createDigraph.bind(this)
+    this.createRandomSubgraph = this.createRandomSubgraph.bind(this)
+    this.getRandomUrl = this.getRandomUrl.bind(this)
 
     this.state = {
       owner: props.match.params.owner,
@@ -44,7 +47,6 @@ class GraphVizCompoment extends Component {
           error: true
         })
       }
-
       else{
         this.setState({
           developers: data.info.developers,
@@ -79,9 +81,30 @@ class GraphVizCompoment extends Component {
   }
 
   draw(){
-    const svg = d3_select(this.ref.current)
     const url = `/data/${this.state.owner}/${this.state.project}/subgraph_${this.state.id}.json`;
     this.readData(url)
+  }
+
+  createRandomSubgraph(){
+
+    var selectedProject = Math.floor(Math.random() * 20)
+    var selectedItem = subgraphsOvertime[selectedProject]
+    var selectedPosition = Math.floor(Math.random() * selectedItem.ids.length)
+    var selectedId = selectedItem.ids[selectedPosition]
+
+    this.setState({
+        owner: selectedItem.owner,
+        project: selectedItem.project,
+        id: selectedId
+    }, () => {
+      this.draw()
+      this.props.history.push(`/${this.state.owner}/${this.state.project}/${this.state.id}`);
+    })
+
+  }
+
+  getRandomUrl(){
+    return "/facebook/react/1"
   }
 
   renderGraph() {
@@ -103,7 +126,7 @@ class GraphVizCompoment extends Component {
         <div className="col col-lg-2">
           <ul className="list-group list-group-flush border border-secondary rounded">
             <li className="list-group-item border-0 li-custom li-title text-center">
-              <button type="button" className="btn btn-primary btn-sm btn-dark">
+              <button  onClick={this.createRandomSubgraph} type="button" className="btn btn-primary btn-sm btn-dark">
                 Random &nbsp;<i className="fas fa-random fa-fw mx-auto" title="Plot a random refactoring subgraph" aria-hidden="true"></i>
               </button>
             </li>
