@@ -18,7 +18,6 @@ class GraphVizCompoment extends Component {
     this.readData = this.readData.bind(this)
     this.createDigraph = this.createDigraph.bind(this)
     this.createRandomSubgraph = this.createRandomSubgraph.bind(this)
-    this.getRandomUrl = this.getRandomUrl.bind(this)
 
     this.state = {
       owner: props.match.params.owner,
@@ -71,8 +70,8 @@ class GraphVizCompoment extends Component {
     var msgLabel = 'Click to see the commit on GitHub';
     var edgeFont = `fontsize=10, arrowsize=1 fontname="Arial, sans-serif"`
     edges.map((refactoring) =>
-      digraph += ` "${refactoring.entity_before_full_name}" -> "${refactoring.entity_after_full_name}" 
-        [id=${refactoring.edge_number}, label="${refactoring.refactoring_name}", ${edgeFont}, edgehref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", edgetarget="_blank", labeltarget="_blank" edgetooltip="${msgLabel}", labelhref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", labeltooltip="${msgLabel}"
+      digraph += ` "${refactoring.before}" -> "${refactoring.after}" 
+        [id=${refactoring.id}, label="${refactoring.ref}", ${edgeFont}, edgehref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", edgetarget="_blank", labeltarget="_blank" edgetooltip="${msgLabel}", labelhref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", labeltooltip="${msgLabel}"
         ]
         `
     );
@@ -101,10 +100,6 @@ class GraphVizCompoment extends Component {
       this.props.history.push(`/${this.state.owner}/${this.state.project}/${this.state.id}`);
     })
 
-  }
-
-  getRandomUrl(){
-    return "/facebook/react/1"
   }
 
   renderGraph() {
@@ -187,11 +182,13 @@ class GraphVizCompoment extends Component {
 
   render(){
     return(
+      <div className="container-fluid" id="graph-div">
         <div className="row">
           {this.renderMenu()}
           {this.renderGraph()}
           {this.renderError()}
         </div>
+      </div>
     )
   }
 }
