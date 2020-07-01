@@ -3,6 +3,14 @@ import {Graphviz} from 'graphviz-react';
 import * as d3 from 'd3';
 import subgraphsOvertime from '../data/subgraphs_overtime.json';
 
+const examples = [
+  {
+    owner: 'facebook',
+    project: 'react',
+    id: 1
+  }
+];
+
 class GraphVizCompoment extends Component {
 
   constructor(props) {
@@ -15,9 +23,11 @@ class GraphVizCompoment extends Component {
     this.renderGraph =  this.renderGraph.bind(this);
     this.renderMenu = this.renderMenu.bind(this)
     this.renderError = this.renderError.bind(this)
+    this.renderExamples = this.renderExamples.bind(this)
     this.readData = this.readData.bind(this)
     this.createDigraph = this.createDigraph.bind(this)
     this.createRandomSubgraph = this.createRandomSubgraph.bind(this)
+    this.showGraph = this.showGraph.bind(this)
 
     this.state = {
       owner: props.match.params.owner,
@@ -90,16 +100,18 @@ class GraphVizCompoment extends Component {
     var selectedItem = subgraphsOvertime[selectedProject]
     var selectedPosition = Math.floor(Math.random() * selectedItem.ids.length)
     var selectedId = selectedItem.ids[selectedPosition]
+    this.showGraph(selectedItem.owner, selectedItem.project, selectedId)
+  }
 
+  showGraph(owner, project, id){
     this.setState({
-        owner: selectedItem.owner,
-        project: selectedItem.project,
-        id: selectedId
+      owner: owner,
+      project: project,
+      id: id
     }, () => {
       this.draw()
       this.props.history.push(`/${this.state.owner}/${this.state.project}/${this.state.id}`);
     })
-
   }
 
   renderGraph() {
@@ -173,8 +185,25 @@ class GraphVizCompoment extends Component {
   renderError(){
     if(this.state.error){
       return (
-        <div className="col col-lg-12 text-center h5 lead">
+        <div className="col col-lg-12 text-center h5 error-msg">
           <p>Refactoring subgraph not found. Back to <a href={process.env.PUBLIC_URL} rel="noopener noreferrer"> homepage</a>.</p>
+        </div>
+      )
+    }
+  }
+
+  renderExamples(){
+    if(!this.state.error){
+      return (
+        <div className="row">
+          <div className="col col-lg-12 text-center">
+            Examples:{' '}
+            {examples.map((example, index) => (
+              <a  className="" href="/#" key={index} onClick={() => {this.showGraph(example.owner, example.project, example.id)}}>
+                {example.owner}/{example.project}/{example.id}
+              </a>
+            ))}
+          </div>
         </div>
       )
     }
