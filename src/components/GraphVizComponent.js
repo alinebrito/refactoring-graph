@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {Graphviz} from 'graphviz-react';
 import * as d3 from 'd3';
-import subgraphsOvertime from '../data/subgraphs_overtime.json';
 
 const examples = [
   {
@@ -10,6 +9,8 @@ const examples = [
     id: 1
   }
 ];
+
+var subgraphsOvertime = {}
 
 class GraphVizCompoment extends Component {
 
@@ -25,6 +26,7 @@ class GraphVizCompoment extends Component {
     this.renderError = this.renderError.bind(this)
     this.renderExamples = this.renderExamples.bind(this)
     this.readData = this.readData.bind(this)
+    this.selectRandomGraph = this.selectRandomGraph.bind(this)
     this.createDigraph = this.createDigraph.bind(this)
     this.createRandomSubgraph = this.createRandomSubgraph.bind(this)
     this.showGraph = this.showGraph.bind(this)
@@ -95,7 +97,30 @@ class GraphVizCompoment extends Component {
   }
 
   createRandomSubgraph(){
+    if(!Object.keys(subgraphsOvertime).length){
+      d3.queue()
+      .defer(d3.json, '/data/subgraphs_overtime.json')
+      .await((error, data) => {
+        if(error){
+          this.setState({
+            error: true
+          })
+        }
+        else{
+          subgraphsOvertime = data;
+          this.selectRandomGraph();
+          this.setState({
+            error: false
+          });
+        }
+      })
+    }
+    else{
+      this.selectRandomGraph();
+    }
+  }
 
+  selectRandomGraph(){
     var selectedProject = Math.floor(Math.random() * 20)
     var selectedItem = subgraphsOvertime[selectedProject]
     var selectedPosition = Math.floor(Math.random() * selectedItem.ids.length)
@@ -117,10 +142,10 @@ class GraphVizCompoment extends Component {
   renderGraph() {
     if(!this.state.error){
       return (
-          <div className="col col-lg-10 text-center" ref={this.ref}>
-            <div className="graphviz-custom">
-              <Graphviz dot={this.state.graph} options={{ width: this.state.width, height: this.state.height, zoom: false}} />
-            </div>
+        <div className="col col-lg-10 text-center" ref={this.ref}>
+          <div className="graphviz-custom">
+            <Graphviz dot={this.state.graph} options={{ width: this.state.width, height: this.state.height, zoom: false}} />
+          </div>
         </div>
       )
     }
