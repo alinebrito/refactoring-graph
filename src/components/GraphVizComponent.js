@@ -83,7 +83,7 @@ class GraphVizCompoment extends Component {
     var edgeFont = `fontsize=10, arrowsize=1 fontname="Arial, sans-serif"`
     edges.map((refactoring) =>
       digraph += ` "${refactoring.before}" -> "${refactoring.after}" 
-        [id=${refactoring.id}, label="${refactoring.ref}", ${edgeFont}, edgehref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", edgetarget="_blank", labeltarget="_blank" edgetooltip="${msgLabel}", labelhref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", labeltooltip="${msgLabel}"
+        [label="${refactoring.ref}", ${edgeFont}, edgehref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", edgetarget="_blank", labeltarget="_blank" edgetooltip="${msgLabel}", labelhref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", labeltooltip="${msgLabel}"
         ]
         `
     );
