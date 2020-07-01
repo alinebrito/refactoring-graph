@@ -43,13 +43,18 @@
 }
 
 .graphviz-custom {
-    overflow: auto!important;
+  overflow: auto!important;
+  margin-top: 50px;
 }
 
 li {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .table-custom{
-    font-size: 12px;
+  font-size: 12px;
+}
+
+.error-msg{
+  margin-top: 50px;
 }
