@@ -32,7 +32,7 @@ class RefGraphInfo extends Component{
       }
       else{
         this.setState({
-          edges: data.edges,
+          edges: data.edges.sort((edge1, edge2) => {return ('' + edge1.sha1).localeCompare(edge2.sha1)}),
           level: data.info.level,
           error: false
         });
@@ -50,10 +50,11 @@ class RefGraphInfo extends Component{
               <thead>
                 <tr>
                   <th scope="col">Edge ID</th>
+                  <th scope="col">Commit</th>
                   <th scope="col">Refatoring</th>
                   <th scope="col">Entity Before</th>
                   <th scope="col">Entity After</th>
-                  <th scope="col">Commit</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -61,10 +62,10 @@ class RefGraphInfo extends Component{
                     return(
                       <tr key={index}>
                         <th scope="row">{edge.id}</th>
+                        <td><a key={index} href={`https://github.com/${this.state.owner}/${this.state.project}/commit/${edge.sha1}`}target="_blank" rel="noopener noreferrer">{edge.sha1}</a></td>
                         <td>{edge.ref}</td>
                         <td>{edge.before}{(edge.lineB)? "##L" + edge.lineB: ""}</td>
                         <td>{edge.after}{(edge.lineA)? "##L" + edge.lineA: ""}</td>
-                        <td><a key={index} href={`https://github.com/${this.state.owner}/${this.state.project}/commit/${edge.sha1}`}target="_blank" rel="noopener noreferrer">{edge.sha1}</a></td>
                       </tr>
                     )
                   })}
