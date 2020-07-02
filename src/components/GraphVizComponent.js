@@ -159,12 +159,12 @@ class GraphVizCompoment extends Component {
           <ul className="list-group list-group-flush border border-secondary rounded">
             
             <li className="list-group-item border-0 li-custom li-title text-center">
-              <button  onClick={this.createRandomSubgraph} type="button" className="btn btn-primary btn-sm btn-dark">
-                Random &nbsp;<i className="fas fa-random fa-fw mx-auto" title="Plot a random refactoring subgraph" aria-hidden="true"></i>
+              <button  title="Plot a random refactoring subgraph" onClick={this.createRandomSubgraph} type="button" className="btn btn-primary btn-sm btn-dark">
+                Random &nbsp;<i className="fas fa-random fa-fw mx-auto"  aria-hidden="true"></i>
               </button>
             </li>
             <li className="list-group-item border-0 li-custom">
-              <i className="fas fa-info-circle" title="Language" aria-hidden="true"></i>&nbsp; Subgraph #{this.state.id}
+              <i className="fas fa-info-circle" title="Subgraph ID" aria-hidden="true"></i>&nbsp; Subgraph #{this.state.id}
             </li>
             <li className="list-group-item border-0 li-custom">
               <i className="fab fa-github fa-fw mx-auto" title="GitHub Project" aria-hidden="true"></i>&nbsp; <a href={`https://github.com/${this.state.owner}/${this.state.project}`}target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a>                   </li>
