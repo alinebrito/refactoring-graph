@@ -64,7 +64,7 @@ class GraphVizCompoment extends Component {
           edges: data.info.edges,
           vertices: data.info.vertices,
           commits: data.info.commits,
-          agemonth: data.info.agemonth,
+          agedays: data.info.agedays,
           refactorings: data.info.refactorings,
           group: data.info.group,
           language: data.info.language,
@@ -157,13 +157,14 @@ class GraphVizCompoment extends Component {
       return (
         <div className="col col-lg-2">
           <ul className="list-group list-group-flush border border-secondary rounded">
+            
             <li className="list-group-item border-0 li-custom li-title text-center">
               <button  onClick={this.createRandomSubgraph} type="button" className="btn btn-primary btn-sm btn-dark">
                 Random &nbsp;<i className="fas fa-random fa-fw mx-auto" title="Plot a random refactoring subgraph" aria-hidden="true"></i>
               </button>
             </li>
             <li className="list-group-item border-0 li-custom">
-              <i className="fas fa-code-branch" title="Language" aria-hidden="true"></i>&nbsp; Subgraph #{this.state.id}
+              <i className="fas fa-info-circle" title="Language" aria-hidden="true"></i>&nbsp; Subgraph #{this.state.id}
             </li>
             <li className="list-group-item border-0 li-custom">
               <i className="fab fa-github fa-fw mx-auto" title="GitHub Project" aria-hidden="true"></i>&nbsp; <a href={`https://github.com/${this.state.owner}/${this.state.project}`}target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a>                   </li>
@@ -183,8 +184,7 @@ class GraphVizCompoment extends Component {
                 Edges: {this.state.edges}
             </li>
             <li className="list-group-item border-0 li-custom">
-                <i className="far fa-clock fa-fw" title="Number of months between the most recent and the oldest commit" aria-hidden="true"></i>&nbsp;
-                Age: {this.state.agemonth}
+              <i className="far fa-clock fa-fw" title="Number of days between the most recent and the oldest commit" aria-hidden="true"></i>&nbsp; Age: {this.state.agedays}
             </li>
             <li className="list-group-item border-0 li-custom">
               <i className="far fa-registered fa-fw" title="Number of distinct refatorings" aria-hidden="true"></i>&nbsp;
