@@ -78,7 +78,7 @@ class GraphVizCompoment extends Component {
   }
 
   createDigraph(edges){
-    var digraph = `digraph {ratio="auto"; node [shape=point, width=0.25]; rankdir=LR; `;
+    var digraph = `digraph "" {ratio="auto"; node [shape=point, width=0.25]; rankdir=LR; `;
     var msgLabel = 'Click to see the commit on GitHub';
     var edgeFont = `fontsize=10, arrowsize=1 fontname="Arial, sans-serif"`
     edges.map((refactoring) =>
