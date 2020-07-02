@@ -53,6 +53,12 @@ li {
 
 .table-custom{
   font-size: 12px;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.table-custom td{
+  max-width: 500px;
 }
 
 .error-msg{
