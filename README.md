@@ -1,6 +1,20 @@
 # Refactoring Graph
 
-Example of refactoring subgraphs: https://refactoring-graph.github.io
+
+## Examples
+
+* Refactoring subgraph from `apache/dubbo`: [refactoring-graph.github.io/#/apache/dubbo/0](https://refactoring-graph.github.io/#/apache/dubbo/0)
+
+<img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/apache_dubbo_0.png" width="350"/>
+
+* Refactoring subgraph from `facebook/fresco`: [refactoring-graph.github.io/#/facebook/fresco/226](https://refactoring-graph.github.io/#/facebook/fresco/226)
+
+<img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/facebook_fresco_226.png" width="400"/>
+
+* Refactoring subgraph from `facebook/react`: [refactoring-graph.github.io/#/facebook/react/77](https://refactoring-graph.github.io/#/facebook/react/77)
+
+<img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/facebook_react_77.png" width="250"/>
+
 
 ## Publications
 
