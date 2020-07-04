@@ -3,17 +3,29 @@
 
 ## Examples
 
-* Refactoring subgraph from `apache/dubbo`: [refactoring-graph.github.io/#/apache/dubbo/0](https://refactoring-graph.github.io/#/apache/dubbo/0)
+* Refactoring subgraph from `apache/dubbo`: [refactoring-graph.github.io/#/apache/dubbo/0](https://refactoring-graph.github.io/#/apache/dubbo/0) (Java)
 
 <img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/apache_dubbo_0.png" width="350"/>
 
-* Refactoring subgraph from `facebook/fresco`: [refactoring-graph.github.io/#/facebook/fresco/226](https://refactoring-graph.github.io/#/facebook/fresco/226)
+* Refactoring subgraph from `facebook/fresco`: [refactoring-graph.github.io/#/facebook/fresco/226](https://refactoring-graph.github.io/#/facebook/fresco/226) (Java)
 
 <img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/facebook_fresco_226.png" width="400"/>
 
-* Refactoring subgraph from `facebook/react`: [refactoring-graph.github.io/#/facebook/react/77](https://refactoring-graph.github.io/#/facebook/react/77)
+* Refactoring subgraph from `bumptech/glide`: [refactoring-graph.github.io/#/bumptech/glide/253](https://refactoring-graph.github.io/#/bumptech/glide/253) (Java)
+
+<img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/bumptech_glide_253.png" width="530"/>
+
+* Refactoring subgraph from `facebook/react`: [refactoring-graph.github.io/#/facebook/react/77](https://refactoring-graph.github.io/#/facebook/react/77) (JavaScript)
 
 <img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/facebook_react_77.png" width="250"/>
+
+* Refactoring subgraph from `quilljs/quill`: [refactoring-graph.github.io/#/quilljs/quill/24](https://refactoring-graph.github.io/#/quilljs/quill/24) (JavaScript)
+
+<img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/quilljs_quill_24.png" width="300"/>
+
+* Refactoring subgraph from `vuejs/vue`: [refactoring-graph.github.io/#/vuejs/vue/32](https://refactoring-graph.github.io/#/vuejs/vue/32) (JavaScript)
+
+<img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/vuejs_vue_32.png" width="150"/>
 
 
 ## Publications
