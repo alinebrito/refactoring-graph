@@ -32,7 +32,7 @@ Refactoring Graph is a data structure to assess refactoring over time. The verti
 
 ## Publications
 
-Aline Brito, Andre Hora, Marco Tulio Valente. [Refactoring Graphs: Assessing Refactoring over Time](https://homepages.dcc.ufmg.br/~mtov/pub/2020-saner-refactoring-graphs.pdf). In 27th International Conference on Software Analysis, Evolution and Reengineering (SANER), pages 367-377, 2020.
+Aline Brito, Andre Hora, Marco Tulio Valente. [Refactoring Graphs: Assessing Refactoring over Time](https://homepages.dcc.ufmg.br/~mtov/pub/2020-saner-refactoring-graphs.pdf). In 27th International Conference on Software Analysis, Evolution and Reengineering (SANER), pages 367-377, 2020. [(Slides)](https://speakerdeck.com/aserg_ufmg/refactoring-graphs-assessing-refactoring-over-time)
 
 ```
 @inproceedings{saner2020, 
