@@ -17,7 +17,7 @@ function App() {
                     <Route exact path="/:owner/:project/:id/info" component={RefGraphInfo} />
                     <Route exact path="/:owner/:project/:id" component={GraphVizComponent} />
                     <Route exact path="/">
-                      <Redirect from="/" exact to="/square/okhttp/84"/>
+                      <Redirect from="/" exact to="/elastic/elasticsearch/713"/>
                     </Route>
                   </HashRouter>
                 </Switch>
