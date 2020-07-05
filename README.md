@@ -1,8 +1,11 @@
+
 # Refactoring Graph
 
 Refactoring Graph is a data structure to assess refactoring over time. The vertices are methods/functions and the edges represent refactoring operations.
 
-> <em>"Another thing to realize about these refactorings is that they take time." -- Fowler, 1999</em>
+> <em>"Another thing to realize about these refactorings is that they take time."
+> 
+>  -- Fowler, 1999</em>
 
 ## Examples
 
