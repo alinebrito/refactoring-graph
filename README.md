@@ -13,6 +13,10 @@ Refactoring Graph is a data structure to assess refactoring over time. The verti
 
 <img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/apache_dubbo_0.png" width="350"/>
 
+* Refactoring subgraph from `elastic/elasticsearch`: [refactoring-graph.github.io/#/elastic/elasticsearch/713](https://refactoring-graph.github.io/#/elastic/elasticsearch/713) (Java)
+
+<img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/elastic_elasticsearch_713.png" width="200"/>
+
 * Refactoring subgraph from `facebook/fresco`: [refactoring-graph.github.io/#/facebook/fresco/226](https://refactoring-graph.github.io/#/facebook/fresco/226) (Java)
 
 <img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/facebook_fresco_226.png" width="400"/>
