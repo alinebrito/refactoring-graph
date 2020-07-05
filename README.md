@@ -1,5 +1,6 @@
 # Refactoring Graph
 
+Refactoring Graph is a data structure to assess refactoring over time. The vertices are methods/functions and the edges represent refactoring operations.
 
 ## Examples
 
@@ -26,7 +27,6 @@
 * Refactoring subgraph from `vuejs/vue`: [refactoring-graph.github.io/#/vuejs/vue/32](https://refactoring-graph.github.io/#/vuejs/vue/32) (JavaScript)
 
 <img src="https://github.com/alinebrito/refactoring-graph/blob/master/docs/img/vuejs_vue_32.png" width="150"/>
-
 
 ## Publications
 
