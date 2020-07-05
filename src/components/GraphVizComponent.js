@@ -99,7 +99,7 @@ class GraphVizCompoment extends Component {
   createRandomSubgraph(){
     if(!Object.keys(subgraphsOvertime).length){
       d3.queue()
-      .defer(d3.json, '/data/subgraphs_overtime.json')
+      .defer(d3.json, '/data/subgraphs_overtime_4.json')
       .await((error, data) => {
         if(error){
           this.setState({

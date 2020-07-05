@@ -45,6 +45,7 @@
 .graphviz-custom {
   overflow: auto!important;
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 li {
