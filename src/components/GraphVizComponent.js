@@ -158,43 +158,43 @@ class GraphVizCompoment extends Component {
         <div className="col col-lg-2">
           <ul className="list-group list-group-flush border border-secondary rounded">
             
-            <li className="list-group-item border-0 li-custom li-title text-center">
-              <button  title="Plot a random refactoring subgraph" onClick={this.createRandomSubgraph} type="button" className="btn btn-primary btn-sm btn-dark">
-                Random &nbsp;<i className="fas fa-random fa-fw mx-auto"  aria-hidden="true"></i>
+            <li className="list-group-item border-0 li-custom li-title text-center" title="Plot a random refactoring subgraph">
+              <button onClick={this.createRandomSubgraph} type="button" className="btn btn-primary btn-sm btn-dark">
+                Plot random subgraph &nbsp;<i className="fas fa-random fa-fw mx-auto"  aria-hidden="true"></i>
               </button>
             </li>
-            <li className="list-group-item border-0 li-custom">
-              <i className="fas fa-info-circle" title="Subgraph ID" aria-hidden="true"></i>&nbsp; Subgraph #{this.state.id}
+            <li className="list-group-item border-0 li-custom" title="Subgraph ID">
+              <i className="fas fa-info-circle" aria-hidden="true"></i>&nbsp; Subgraph #{this.state.id}
             </li>
-            <li className="list-group-item border-0 li-custom">
-              <i className="fab fa-github fa-fw mx-auto" title="GitHub Project" aria-hidden="true"></i>&nbsp; <a href={`https://github.com/${this.state.owner}/${this.state.project}`}target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a>                   </li>
-            <li className="list-group-item border-0 li-custom">
-              <i className="far fa-file-code fa-fw" title="Language" aria-hidden="true"></i>&nbsp; {this.state.language}
+            <li className="list-group-item border-0 li-custom" title="GitHub Project">
+              <i className="fab fa-github fa-fw mx-auto"  aria-hidden="true"></i>&nbsp; <a href={`https://github.com/${this.state.owner}/${this.state.project}`} target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a>                   </li>
+            <li className="list-group-item border-0 li-custom" title="Language">
+              <i className="far fa-file-code fa-fw" aria-hidden="true"></i>&nbsp; {this.state.language}
             </li>
-            <li className="list-group-item border-0 li-custom">
-                <i className="fa fa-users fa-fw" title="Number of distinct developers" aria-hidden="true"></i>&nbsp;
+            <li className="list-group-item border-0 li-custom" title="Number of distinct developers">
+                <i className="fa fa-users fa-fw"  aria-hidden="true"></i>&nbsp;
                 Developers: {this.state.developers}
             </li>
-            <li className="list-group-item border-0 li-custom">
-                <i className="fa fa-ellipsis-h fa-fw" title="Number of vertices" aria-hidden="true"></i>&nbsp;
+            <li className="list-group-item border-0 li-custom" title="Number of vertices">
+                <i className="fa fa-ellipsis-h fa-fw"  aria-hidden="true"></i>&nbsp;
                 Vertices: {this.state.vertices}
             </li>
-            <li className="list-group-item border-0 li-custom">
-                <i className="fa fa-exchange-alt fa-fw" title="Number of edges" aria-hidden="true"></i>&nbsp;
+            <li className="list-group-item border-0 li-custom" title="Number of edges">
+                <i className="fa fa-exchange-alt fa-fw" aria-hidden="true"></i>&nbsp;
                 Edges: {this.state.edges}
             </li>
-            <li className="list-group-item border-0 li-custom">
-              <i className="far fa-clock fa-fw" title="Number of days between the most recent and the oldest commit" aria-hidden="true"></i>&nbsp; Age: {this.state.agedays}
+            <li className="list-group-item border-0 li-custom" title="Number of days between the most recent and the oldest commit">
+              <i className="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp; Age: {this.state.agedays}
             </li>
-            <li className="list-group-item border-0 li-custom">
-              <i className="far fa-registered fa-fw" title="Number of distinct refatorings" aria-hidden="true"></i>&nbsp;
+            <li className="list-group-item border-0 li-custom" title="Number of distinct refatorings">
+              <i className="far fa-registered fa-fw"  aria-hidden="true"></i>&nbsp;
                 Refactorings: {this.state.refactorings}
             </li>
           </ul>
           <ul className="list-group list-group-flush ul-bottom border border-secondary rounded">
-          <li className="list-group-item border-0 li-custom">
-            <i className="fa fa-code-branch fa-fw" title="Number of distinct commits" aria-hidden="true"></i>&nbsp;
-                Commits: {this.state.commits}
+          <li className="list-group-item border-0 li-custom" title="Number of commits used in this subgraph">
+            <i className="fa fa-code-branch fa-fw" aria-hidden="true"></i>&nbsp;
+            Commits: {this.state.commits}
             </li>
             {this.state.commits_list.map((sha1, index) => {
               return <a key={index} href={`https://github.com/${this.state.owner}/${this.state.project}/commit/${sha1}`}target="_blank" rel="noopener noreferrer"><li className="list-group-item li-custom">
