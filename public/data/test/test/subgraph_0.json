@@ -11,7 +11,7 @@
       "group": "Atomic",
       "language": "Java",
       "level": "Method",
-      "summary": ""
+      "summary": "Most edges refer to extract operations from method xxx() in class YYYY."
     },
     "commits_list": [
       "5e12628a"

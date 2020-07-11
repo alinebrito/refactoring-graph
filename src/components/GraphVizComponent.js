@@ -25,6 +25,7 @@ class GraphVizCompoment extends Component {
     this.draw = this.draw.bind(this);
     this.renderGraph =  this.renderGraph.bind(this);
     this.renderMenu = this.renderMenu.bind(this)
+    this.renderMenuSummary = this.renderMenuSummary.bind(this)
     this.renderError = this.renderError.bind(this)
     this.renderExamples = this.renderExamples.bind(this)
     this.renderToolTip = this.renderToolTip.bind(this)
@@ -43,7 +44,8 @@ class GraphVizCompoment extends Component {
       graph: 'digraph refgraph {}',
       commits_list: [],
       error: false,
-      level: ""
+      level: "",
+      summary: ""
     };
 
   }
@@ -101,6 +103,7 @@ class GraphVizCompoment extends Component {
           group: data.info.group,
           language: data.info.language,
           level: data.info.level,
+          summary: data.info.summary,
           commits_list: data.commits_list,
           graph: this.createDigraph(data.edges),
           error: false
@@ -188,19 +191,32 @@ class GraphVizCompoment extends Component {
     }
   }
 
+  renderMenuSummary(){
+    if(!this.state.error && this.state.summary){
+      return(
+      <div className="card card-summary text-white bg-dark">
+        <div className="card-body text-monospace text-center">
+          <b>Summary:</b> {this.state.summary}
+        </div>
+      </div>
+      )
+    }
+
+  }
+
   renderMenu(){
     if(!this.state.error){
 
       return (
         <div className="col col-lg-2">
-          <ul className="list-group list-group-flush border border-secondary rounded">
-            
-            <li className="list-group-item border-0 li-custom li-title text-center" title="Plot a random refactoring subgraph">
-              <button onClick={this.createRandomSubgraph} type="button" className="btn btn-primary btn-sm btn-dark">
-                Plot random subgraph &nbsp;<i className="fas fa-random fa-fw mx-auto"  aria-hidden="true"></i>
+          {this.renderMenuSummary()}
+           <ul className="list-group list-group-flush border border-secondary rounded ul-bottom">
+           <li className="list-group-item border-0 li-custom text-center">
+              <button onClick={this.createRandomSubgraph} type="button" className="btn btn-sm btn-dark button-random">
+              Random subgraph &nbsp;<i className="fas fa-random fa-fw mx-auto"  aria-hidden="true"></i>
               </button>
             </li>
-            <li className="list-group-item border-0 li-custom" title="Subgraph ID">
+             <li className="list-group-item border-0 li-custom" title="Subgraph ID">
               <i className="fas fa-info-circle" aria-hidden="true"></i>&nbsp; Subgraph #{this.state.id}
             </li>
             <li className="list-group-item border-0 li-custom" title="GitHub Project">
@@ -229,16 +245,17 @@ class GraphVizCompoment extends Component {
             </li>
           </ul>
           <ul className="list-group list-group-flush ul-bottom border border-secondary rounded">
-          <li className="list-group-item border-0 li-custom" title="Number of commits used in this subgraph">
-            <i className="fa fa-code-branch fa-fw" aria-hidden="true"></i>&nbsp;
-            Commits: {this.state.commits}
-            </li>
-            {this.state.commits_list.map((sha1, index) => {
-              return <a key={index} href={`https://github.com/${this.state.owner}/${this.state.project}/commit/${sha1}`}target="_blank" rel="noopener noreferrer"><li className="list-group-item li-custom">
-                {sha1}
-              </li></a>
-            })}
-          </ul>
+            <li className="list-group-item border-0 li-custom" title="Number of commits used in this subgraph">
+              <i className="fa fa-code-branch fa-fw" aria-hidden="true"></i>&nbsp;
+              Commits: {this.state.commits}
+              </li>
+              {this.state.commits_list.map((sha1, index) => {
+                return <a key={index} href={`https://github.com/${this.state.owner}/${this.state.project}/commit/${sha1}`}target="_blank" rel="noopener noreferrer"><li className="list-group-item li-custom">
+                  {sha1}
+                </li></a>
+              })}
+            </ul>
+
         </div>
       )
     }

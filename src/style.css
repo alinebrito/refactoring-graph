@@ -29,33 +29,28 @@
 }
 
 .node ellipse {
-    stroke: #000000;
-    fill: #000000;
+  stroke: #000000;
+  fill: #000000;
 }
 
 .edge path{
-    stroke: #909090;
+  stroke: #909090;
 }
 
 .edge polygon{
-    stroke: #909090;
-    fill: #909090;
+  stroke: #909090;
+  fill: #909090;
 }
 
 .li-custom {
-    padding: 2px;
-    margin-left: 5px;
-}
-
-.li-title{
-    margin-bottom: 20px;
-    margin-top: 5px;
+  padding: 2px;
+  margin-left: 5px;
 }
 
 .ul-bottom{
-    margin-top: 20px;
-    max-height: 300px;
-    overflow: auto;
+  margin-top: 20px;
+  max-height: 300px;
+  overflow: auto;
 }
 
 #graph-div ::-webkit-scrollbar {
@@ -94,4 +89,14 @@ li {
 
 .error-msg{
   margin-top: 50px;
+}
+
+.card-summary {
+  margin-bottom: 20px;
+}
+
+.button-random{
+  width: 150px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
