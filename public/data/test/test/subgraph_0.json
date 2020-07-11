@@ -1,0 +1,109 @@
+{
+    "info": {
+      "project": "airbnb/lottie-android",
+      "developers": 1,
+      "edges": 1,
+      "vertices": 2,
+      "commits": 1,
+      "id": 0,
+      "agedays": 0,
+      "refactorings": 1,
+      "group": "Atomic",
+      "language": "Java",
+      "level": "Method",
+      "summary": ""
+    },
+    "commits_list": [
+      "5e12628a"
+    ],
+    "edges": [
+      {
+        "id": 0,
+        "before": "xxx.X#a()",
+        "lineB": null,
+        "fileB": "BaseLayer",
+        "after": "xxx.X#b()",
+        "fileA": "BaseLayer",
+        "lineA": null,
+        "ref": "MOVE",
+        "sha1": "5e12628a"
+      },
+      {
+        "id": 0,
+        "before": "xxx.X#b()",
+        "lineB": null,
+        "fileB": "BaseLayer",
+        "after": "xxx.X#c()",
+        "fileA": "BaseLayer",
+        "lineA": null,
+        "ref": "MOVE",
+        "sha1": "5e12628a"
+      },
+      {
+        "id": 0,
+        "before": "xxx.X#c()",
+        "lineB": null,
+        "fileB": "BaseLayer",
+        "after": "xxx.X#d()",
+        "fileA": "BaseLayer",
+        "lineA": null,
+        "ref": "MOVE",
+        "sha1": "5e12628a"
+      },
+      {
+        "id": 0,
+        "before": "xxx.X#d()",
+        "lineB": null,
+        "fileB": "BaseLayer",
+        "after": "xxx.X#e()",
+        "fileA": "BaseLayer",
+        "lineA": null,
+        "ref": "MOVE",
+        "sha1": "5e12628a"
+      },
+      {
+        "id": 0,
+        "before": "xxx.X#e()",
+        "lineB": null,
+        "fileB": "BaseLayer",
+        "after": "xxx.X#f()",
+        "fileA": "BaseLayer",
+        "lineA": null,
+        "ref": "MOVE",
+        "sha1": "5e12628a"
+      },
+      {
+        "id": 0,
+        "before": "xxx.X#f()",
+        "lineB": null,
+        "fileB": "BaseLayer",
+        "after": "xxx.X#g()",
+        "fileA": "BaseLayer",
+        "lineA": null,
+        "ref": "MOVE",
+        "sha1": "5e12628a"
+      },
+      {
+        "id": 0,
+        "before": "xxx.X#g()",
+        "lineB": null,
+        "fileB": "BaseLayer",
+        "after": "xxx.X#h()",
+        "fileA": "BaseLayer",
+        "lineA": null,
+        "ref": "MOVE",
+        "sha1": "5e12628a"
+      },
+      {
+        "id": 0,
+        "before": "xxx.X#h()",
+        "lineB": null,
+        "fileB": "BaseLayer",
+        "after": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.X#i()",
+        "fileA": "BaseLayer",
+        "lineA": null,
+        "ref": "MOVE",
+        "sha1": "5e12628a"
+      }
+    ]
+  }
