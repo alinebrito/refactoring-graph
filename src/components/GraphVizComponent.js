@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import {Graphviz} from 'graphviz-react';
 import * as d3 from 'd3';
+import {select as d3_select} from 'd3-selection'
+import {event as d3_event} from 'd3-selection'
 
 const examples = [
   {
@@ -25,6 +27,7 @@ class GraphVizCompoment extends Component {
     this.renderMenu = this.renderMenu.bind(this)
     this.renderError = this.renderError.bind(this)
     this.renderExamples = this.renderExamples.bind(this)
+    this.renderToolTip = this.renderToolTip.bind(this)
     this.readData = this.readData.bind(this)
     this.selectRandomGraph = this.selectRandomGraph.bind(this)
     this.createDigraph = this.createDigraph.bind(this)
@@ -39,14 +42,43 @@ class GraphVizCompoment extends Component {
       height: this.ref.offsetHeight, //window.innerHeight - 262,
       graph: 'digraph refgraph {}',
       commits_list: [],
-      error: false
+      error: false,
+      level: ""
     };
 
   }
 
-  // After component creation
   componentDidMount() {
     this.draw()
+  }
+
+  renderToolTip(){
+    var tooltip = d3_select(".tooltip-node")
+    var node = d3_select('svg').selectAll('ellipse')
+    .on("mouseover", (d) => {
+
+        tooltip.transition()
+        .duration(200)
+        .style("opacity", 1);
+
+        var target = d.parent.attributes.target.split("#")
+        var prefixLocation = target[0].length > 40 ? '...' : '';
+        var location = `${prefixLocation}${target[0].slice(Math.max(-40, -target[0].length))}`;
+
+        tooltip.html(`
+          <table class="table-borderless table-sm">
+            <tr><td class="td-label"><b>${this.state.level}: </b></td><td class="td-info">${target[1]}</td></tr>
+            <tr><td class="td-label"><b>Location: </b></td><td class="td-info">${location}</td></tr>
+          </table>`)
+        .style("left", (d3_event.pageX + window.pageXOffset) + "px")
+        .style("top", (d3_event.pageY - window.pageYOffset)  + "px");
+    })
+   .on("mouseout", function(d) {
+      tooltip.transition()
+      .duration(200)
+      .style("opacity", 0);
+   })
+
   }
 
   readData(url){
@@ -72,7 +104,9 @@ class GraphVizCompoment extends Component {
           commits_list: data.commits_list,
           graph: this.createDigraph(data.edges),
           error: false
-        });
+        }, () => {
+            this.renderToolTip()
+        })
       }
     })
   }
@@ -84,7 +118,9 @@ class GraphVizCompoment extends Component {
     edges.map((refactoring) =>
       digraph += ` "${refactoring.before}" -> "${refactoring.after}" 
         [label="${refactoring.ref}", ${edgeFont}, edgehref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", edgetarget="_blank", labeltarget="_blank" edgetooltip="${msgLabel}", labelhref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", labeltooltip="${msgLabel}"
-        ]
+        ];
+        "${refactoring.before}"[target="${refactoring.before}" tooltip=" "]
+        "${refactoring.after}"[target="${refactoring.after}" tooltip=" "]
         `
     );
     digraph += `}`
@@ -145,6 +181,7 @@ class GraphVizCompoment extends Component {
         <div className="col col-lg-10 text-center" ref={this.ref}>
           <div className="graphviz-custom">
             <Graphviz dot={this.state.graph} options={{ width: this.state.width, height: this.state.height, zoom: false}} />
+            <div className="tooltip-node border border-secondary rounded"></div>
           </div>
         </div>
       )
