@@ -69,7 +69,6 @@
 
 .graphviz-custom {
   overflow: auto!important;
-  margin-top: 50px;
   margin-bottom: 50px;
 }
 
@@ -94,6 +93,10 @@ li {
 .card-summary {
   margin-bottom: 20px;
   font-size: 14px;
+}
+
+.card-nav{
+  margin-bottom: 50px;
 }
 
 .button-random{

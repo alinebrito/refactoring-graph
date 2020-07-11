@@ -210,7 +210,7 @@ class GraphVizCompoment extends Component {
       return (
         <div className="col col-lg-3">
           {this.renderMenuSummary()}
-           <ul className="list-group list-group-flush border border-secondary rounded ul-bottom">
+           <ul className="list-group list-group-flush border border-secondary rounded">
            <li className="list-group-item border-0 li-custom text-center">
               <button onClick={this.createRandomSubgraph} type="button" className="btn btn-sm btn-dark button-random">
               Random subgraph &nbsp;<i className="fas fa-random fa-fw mx-auto"  aria-hidden="true"></i>

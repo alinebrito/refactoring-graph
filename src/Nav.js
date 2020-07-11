@@ -18,7 +18,7 @@ export default () => {
         </div>
       </div>
       <div className="container">
-          <div className="card-body border-0">
+          <div className="card-body border-0 card-nav">
             <p className="text-center">Refactoring Graph is a data structure to assess refactorings over time. The vertices are methods/functions and the edges represent refactoring operations. Hover the mouse over a vertice to see its name, and click an edge to see the commit on GitHub.
             </p>
           </div>
