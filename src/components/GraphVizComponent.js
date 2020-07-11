@@ -181,7 +181,7 @@ class GraphVizCompoment extends Component {
   renderGraph() {
     if(!this.state.error){
       return (
-        <div className="col col-lg-10 text-center" ref={this.ref}>
+        <div className="col col-lg-9 text-center" ref={this.ref}>
           <div className="graphviz-custom">
             <Graphviz dot={this.state.graph} options={{ width: this.state.width, height: this.state.height, zoom: false}} />
             <div className="tooltip-node border border-secondary rounded"></div>
@@ -208,7 +208,7 @@ class GraphVizCompoment extends Component {
     if(!this.state.error){
 
       return (
-        <div className="col col-lg-2">
+        <div className="col col-lg-3">
           {this.renderMenuSummary()}
            <ul className="list-group list-group-flush border border-secondary rounded ul-bottom">
            <li className="list-group-item border-0 li-custom text-center">
