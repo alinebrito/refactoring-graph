@@ -196,7 +196,7 @@ class GraphVizCompoment extends Component {
       return(
       <div className="card card-summary text-white bg-dark">
         <div className="card-body text-monospace text-center">
-          <div dangerouslySetInnerHTML={{__html: `<b>Summary:</b> ${this.state.summary}`}}></div>
+          <div dangerouslySetInnerHTML={{__html: `<b>Summary:</b> ${this.state.summary} `}}></div>
         </div>
       </div>
       )
@@ -223,10 +223,6 @@ class GraphVizCompoment extends Component {
               <i className="fab fa-github fa-fw mx-auto"  aria-hidden="true"></i>&nbsp; <a href={`https://github.com/${this.state.owner}/${this.state.project}`} target="_blank" rel="noopener noreferrer">{this.state.owner}/{this.state.project}</a>                   </li>
             <li className="list-group-item border-0 li-custom" title="Language">
               <i className="far fa-file-code fa-fw" aria-hidden="true"></i>&nbsp; {this.state.language}
-            </li>
-            <li className="list-group-item border-0 li-custom" title="Number of distinct developers">
-                <i className="fa fa-users fa-fw"  aria-hidden="true"></i>&nbsp;
-                Developers: {this.state.developers}
             </li>
             <li className="list-group-item border-0 li-custom" title="Number of vertices">
                 <i className="fa fa-ellipsis-h fa-fw"  aria-hidden="true"></i>&nbsp;
