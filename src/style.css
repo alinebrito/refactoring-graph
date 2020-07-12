@@ -44,7 +44,10 @@
 
 .li-custom {
   padding: 2px;
-  margin-left: 5px;
+}
+
+.ul-custom{
+  padding: 12px;
 }
 
 .ul-bottom{
@@ -95,12 +98,16 @@ li {
   font-size: 14px;
 }
 
+.card-summary a {
+  color: #6aa3e1;
+}
+
 .card-nav{
   margin-bottom: 50px;
+  font-size: 18px;
 }
 
 .button-random{
   width: 150px;
-  margin-top: 15px;
   margin-bottom: 15px;
 }

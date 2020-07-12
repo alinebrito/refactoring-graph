@@ -196,7 +196,7 @@ class GraphVizCompoment extends Component {
       return(
       <div className="card card-summary text-white bg-dark">
         <div className="card-body text-monospace text-center">
-          <b>Summary:</b> {this.state.summary}
+          <div dangerouslySetInnerHTML={{__html: `<b>Summary:</b> ${this.state.summary}`}}></div>
         </div>
       </div>
       )
@@ -210,7 +210,7 @@ class GraphVizCompoment extends Component {
       return (
         <div className="col col-lg-3">
           {this.renderMenuSummary()}
-           <ul className="list-group list-group-flush border border-secondary rounded">
+           <ul className="list-group list-group-flush border border-secondary rounded ul-custom">
            <li className="list-group-item border-0 li-custom text-center">
               <button onClick={this.createRandomSubgraph} type="button" className="btn btn-sm btn-dark button-random">
               Random subgraph &nbsp;<i className="fas fa-random fa-fw mx-auto"  aria-hidden="true"></i>
@@ -244,10 +244,10 @@ class GraphVizCompoment extends Component {
                 Refactorings: {this.state.refactorings}
             </li>
           </ul>
-          <ul className="list-group list-group-flush ul-bottom border border-secondary rounded">
+          <ul className="list-group list-group-flush ul-bottom border border-secondary rounded ul-custom">
             <li className="list-group-item border-0 li-custom" title="Number of commits used in this subgraph">
               <i className="fa fa-code-branch fa-fw" aria-hidden="true"></i>&nbsp;
-              Commits: {this.state.commits}
+              Commits used in this subgraph: {this.state.commits}
               </li>
               {this.state.commits_list.map((sha1, index) => {
                 return <a key={index} href={`https://github.com/${this.state.owner}/${this.state.project}/commit/${sha1}`}target="_blank" rel="noopener noreferrer"><li className="list-group-item li-custom">
