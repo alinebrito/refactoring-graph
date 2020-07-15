@@ -6,10 +6,26 @@ import {event as d3_event} from 'd3-selection'
 
 const examples = [
   {
+    owner: 'apache',
+    project: 'dubbo',
+    id: 0
+  },
+  {
+    owner: 'spring-projects',
+    project: 'spring-framework',
+    id: 2578
+  },
+  {
+    owner: 'quilljs',
+    project: 'quill',
+    id: 24
+  },
+  {
     owner: 'facebook',
     project: 'react',
-    id: 1
-  }
+    id: 77
+  },
+
 ];
 
 var subgraphsOvertime = {}
@@ -271,11 +287,11 @@ class GraphVizCompoment extends Component {
     if(!this.state.error){
       return (
         <div className="row">
-          <div className="col col-lg-12 text-center">
+          <div className="col col-lg-12 text-center examples">
             Examples:{' '}
             {examples.map((example, index) => (
-              <a  className="" href="/#" key={index} onClick={() => {this.showGraph(example.owner, example.project, example.id)}}>
-                {example.owner}/{example.project}/{example.id}
+              <a  className="example-item" href={`#/${example.owner}/${example.project}/${example.id}`} key={index} onClick={() => {this.showGraph(example.owner, example.project, example.id)}}>
+                {example.project}
               </a>
             ))}
           </div>
@@ -287,6 +303,7 @@ class GraphVizCompoment extends Component {
   render(){
     return(
       <div className="container-fluid" id="graph-div">
+         {this.renderExamples()}
         <div className="row">
           {this.renderMenu()}
           {this.renderGraph()}

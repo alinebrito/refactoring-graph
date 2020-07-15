@@ -104,8 +104,16 @@ li {
 }
 
 .card-nav{
-  margin-bottom: 50px;
+  padding-bottom: 0;
   font-size: 18px;
+}
+
+.examples{
+  margin-bottom: 60px;
+}
+
+.example-item{
+  margin-left: 10px;
 }
 
 .button-random{
