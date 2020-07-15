@@ -74,6 +74,7 @@
 .graphviz-custom {
   overflow: auto!important;
   margin-bottom: 50px;
+  margin-top: 50px;
 }
 
 li {
