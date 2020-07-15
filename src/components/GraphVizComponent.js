@@ -56,7 +56,7 @@ class GraphVizCompoment extends Component {
 
   renderToolTip(){
     var tooltip = d3_select(".tooltip-node")
-    var node = d3_select('svg').selectAll('ellipse')
+    d3_select('svg').selectAll('ellipse')
     .on("mouseover", (d) => {
 
         tooltip.transition()
@@ -211,7 +211,7 @@ class GraphVizCompoment extends Component {
         <div className="col col-lg-3">
           {this.renderMenuSummary()}
            <ul className="list-group list-group-flush border border-secondary rounded ul-custom">
-           <li className="list-group-item border-0 li-custom text-center">
+           <li className="list-group-item border-0 li-custom text-center" title="Plot a random refactoring subgraph">
               <button onClick={this.createRandomSubgraph} type="button" className="btn btn-sm btn-dark button-random">
               Random subgraph &nbsp;<i className="fas fa-random fa-fw mx-auto"  aria-hidden="true"></i>
               </button>
@@ -237,7 +237,7 @@ class GraphVizCompoment extends Component {
             </li>
             <li className="list-group-item border-0 li-custom" title="Number of distinct refatorings">
               <i className="far fa-registered fa-fw"  aria-hidden="true"></i>&nbsp;
-                Refactorings: {this.state.refactorings}
+                Distinct refactorings: {this.state.refactorings}
             </li>
           </ul>
           <ul className="list-group list-group-flush ul-bottom border border-secondary rounded ul-custom">
