@@ -24,8 +24,7 @@ const examples = [
     owner: 'facebook',
     project: 'react',
     id: 77
-  },
-
+  }
 ];
 
 var subgraphsOvertime = {}
@@ -288,7 +287,7 @@ class GraphVizCompoment extends Component {
       return (
         <div className="row">
           <div className="col col-lg-12 text-center examples">
-            Examples:{' '}
+            <a className="example-item">Examples:</a>
             {examples.map((example, index) => (
               <a  className="example-item" href={`#/${example.owner}/${example.project}/${example.id}`} key={index} onClick={() => {this.showGraph(example.owner, example.project, example.id)}}>
                 {example.project}
