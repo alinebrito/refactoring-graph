@@ -1,18 +1,20 @@
 import React, {Component} from 'react';
 import * as d3 from 'd3';
+import queryString from 'query-string';
 
 class RefGraphInfo extends Component{
 
   constructor(props){
     super(props);
-
+    let params = queryString.parse(this.props.location.search)
     this.readData = this.readData.bind(this)
     this.state = {
         owner: props.match.params.owner,
         project: props.match.params.project,
         id: props.match.params.id,
         level: "",
-        edges: []
+        edges: [],
+        commits: params.commits ? params.commits.split(',') : []
       };
   }
 
@@ -45,8 +47,8 @@ class RefGraphInfo extends Component{
     return(
       <div className="container-fluid">
         <div className="row">
-          <div className="col col-lg-12 table-custom">
-            <table className="table table-striped table-responsive">
+          <div className="col-lg-11 offset-md-1 table-custom">
+            <table className="table table-responsive">
               <thead>
                 <tr>
                   <th scope="col">Edge ID</th>
@@ -60,12 +62,12 @@ class RefGraphInfo extends Component{
               <tbody>
                   {this.state.edges.map((edge, index) => {
                     return(
-                      <tr key={index}>
+                      <tr key={index} className= {this.state.commits.includes(edge.sha1) ? "alert alert-info" : ""}>
                         <th scope="row">{edge.id}</th>
                         <td><a key={index} href={`https://github.com/${this.state.owner}/${this.state.project}/commit/${edge.sha1}`}target="_blank" rel="noopener noreferrer">{edge.sha1}</a></td>
                         <td>{edge.ref}</td>
-                        <td>{edge.before}{(edge.lineB)? "##L" + edge.lineB: ""}</td>
-                        <td>{edge.after}{(edge.lineA)? "##L" + edge.lineA: ""}</td>
+                        <td>{edge.before}{(edge.lineB)? " (line " + edge.lineB + ")" : ""}</td>
+                        <td>{edge.after}{(edge.lineA)? " (line " + edge.lineA + ")" : ""}</td>
                       </tr>
                     )
                   })}
