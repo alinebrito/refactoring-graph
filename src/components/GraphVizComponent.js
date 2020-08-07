@@ -3,6 +3,7 @@ import {Graphviz} from 'graphviz-react';
 import * as d3 from 'd3';
 import {select as d3_select} from 'd3-selection'
 import {event as d3_event} from 'd3-selection'
+import queryString from 'query-string';
 
 const examples = [
   {
@@ -35,6 +36,8 @@ class GraphVizCompoment extends Component {
 
     super();
 
+    let params = queryString.parse(props.location.search)
+
     this.ref = React.createRef();
 
     this.draw = this.draw.bind(this);
@@ -58,6 +61,7 @@ class GraphVizCompoment extends Component {
       height: this.ref.offsetHeight, //window.innerHeight - 262,
       graph: 'digraph refgraph {}',
       commits_list: [],
+      commits_params: params.commits ? params.commits.split(',') : [],
       error: false,
       level: "",
       summary: ""
@@ -135,7 +139,7 @@ class GraphVizCompoment extends Component {
     var edgeFont = `fontsize=10, arrowsize=1 fontname="Arial, sans-serif"`
     edges.map((refactoring) =>
       digraph += ` "${refactoring.before}" -> "${refactoring.after}" 
-        [label="${refactoring.ref}", ${edgeFont}, edgehref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", edgetarget="_blank", labeltarget="_blank" edgetooltip="${msgLabel}", labelhref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", labeltooltip="${msgLabel}"
+        [color="${this.state.commits_params.includes(refactoring.sha1)? '#ff0000' : '#909090'}", label="${refactoring.ref}", ${edgeFont}, edgehref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", edgetarget="_blank", labeltarget="_blank" edgetooltip="${msgLabel}", labelhref="https://github.com/${this.state.owner}/${this.state.project}/commit/${refactoring.sha1}", labeltooltip="${msgLabel}"
         ];
         "${refactoring.before}"[target="${refactoring.before}" tooltip=" "]
         "${refactoring.after}"[target="${refactoring.after}" tooltip=" "]

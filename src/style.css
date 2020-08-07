@@ -33,15 +33,6 @@
   fill: #000000;
 }
 
-.edge path{
-  stroke: #909090;
-}
-
-.edge polygon{
-  stroke: #909090;
-  fill: #909090;
-}
-
 .li-custom {
   padding: 2px;
 }
