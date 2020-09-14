@@ -44,6 +44,7 @@ class GraphVizCompoment extends Component {
     this.renderGraph =  this.renderGraph.bind(this);
     this.renderMenu = this.renderMenu.bind(this)
     this.renderMenuSummary = this.renderMenuSummary.bind(this)
+    this.renderMenuCommitList = this.renderMenuCommitList.bind(this)
     this.renderError = this.renderError.bind(this)
     this.renderExamples = this.renderExamples.bind(this)
     this.renderToolTip = this.renderToolTip.bind(this)
@@ -220,7 +221,22 @@ class GraphVizCompoment extends Component {
       </div>
       )
     }
+  }
 
+  renderMenuCommitList(){
+    return(
+      <ul className="list-group list-group-flush ul-bottom border border-secondary rounded ul-custom">
+        <li className="list-group-item border-0 li-custom" title="Number of commits used in this subgraph">
+          <i className="fa fa-code-branch fa-fw" aria-hidden="true"></i>&nbsp;
+          Commits used in this subgraph: {this.state.commits}
+          </li>
+          {this.state.commits_list.map((sha1, index) => {
+            return <a key={index} href={`https://github.com/${this.state.owner}/${this.state.project}/commit/${sha1}`}target="_blank" rel="noopener noreferrer"><li className="list-group-item li-custom">
+              {sha1}
+            </li></a>
+          })}
+      </ul>
+    )
   }
 
   renderMenu(){
@@ -228,7 +244,7 @@ class GraphVizCompoment extends Component {
 
       return (
         <div className="col col-lg-3">
-          {this.renderMenuSummary()}
+          {/* {this.renderMenuSummary()} */}
            <ul className="list-group list-group-flush border border-secondary rounded ul-custom">
            <li className="list-group-item border-0 li-custom text-center" title="Plot a random refactoring subgraph">
               <button onClick={this.createRandomSubgraph} type="button" className="btn btn-sm btn-dark button-random">
@@ -259,18 +275,7 @@ class GraphVizCompoment extends Component {
                 Distinct refactorings: {this.state.refactorings}
             </li>
           </ul>
-          <ul className="list-group list-group-flush ul-bottom border border-secondary rounded ul-custom">
-            <li className="list-group-item border-0 li-custom" title="Number of commits used in this subgraph">
-              <i className="fa fa-code-branch fa-fw" aria-hidden="true"></i>&nbsp;
-              Commits used in this subgraph: {this.state.commits}
-              </li>
-              {this.state.commits_list.map((sha1, index) => {
-                return <a key={index} href={`https://github.com/${this.state.owner}/${this.state.project}/commit/${sha1}`}target="_blank" rel="noopener noreferrer"><li className="list-group-item li-custom">
-                  {sha1}
-                </li></a>
-              })}
-            </ul>
-
+          {/* {this.renderMenuCommitList()} */}
         </div>
       )
     }
