@@ -244,7 +244,7 @@ class GraphVizCompoment extends Component {
 
       return (
         <div className="col col-lg-3">
-          {/* {this.renderMenuSummary()} */}
+           {/* {this.renderMenuSummary()} */}
            <ul className="list-group list-group-flush border border-secondary rounded ul-custom">
            <li className="list-group-item border-0 li-custom text-center" title="Plot a random refactoring subgraph">
               <button onClick={this.createRandomSubgraph} type="button" className="btn btn-sm btn-dark button-random">
@@ -275,7 +275,7 @@ class GraphVizCompoment extends Component {
                 Distinct refactorings: {this.state.refactorings}
             </li>
           </ul>
-          {/* {this.renderMenuCommitList()} */}
+          {this.renderMenuCommitList()}
         </div>
       )
     }
